@@ -87,7 +87,7 @@ const nextConfig = {
   },
   productionBrowserSourceMaps: true,
   env: {
-    NEXT_PUBLIC_COMMIT_SHA: VERCEL_GIT_COMMIT_SHA,
+    NEXT_PUBLIC_COMMIT_SHA: GITHUB_SHA,
   },
   basePath,
 };
