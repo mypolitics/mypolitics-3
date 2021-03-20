@@ -10,12 +10,16 @@ import "nprogress/nprogress.css";
 import "normalize.min.css";
 import { FacebookProvider } from "react-facebook";
 import useTranslation from "next-translate/useTranslation";
+import { init } from "../services/sentry";
+
+init();
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+// @ts-expect-error `err` is supposedly not defined here, but the reference is required due to https://github.com/vercel/next.js/issues/8592.
+const App: React.FC<AppProps> = ({ Component, pageProps, err }) => {
   const { lang } = useTranslation();
   const apolloClient = useApollo(pageProps.initialApolloState);
   const facebookLanguage = `${lang}_${lang.toUpperCase()}`;
@@ -25,7 +29,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <ApolloProvider client={apolloClient}>
         <ToastProvider>
           <Layout>
-            <Component {...pageProps} />
+            <Component {...pageProps} err={err} />
           </Layout>
         </ToastProvider>
       </ApolloProvider>

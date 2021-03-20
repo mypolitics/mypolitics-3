@@ -29,8 +29,8 @@ import { Link, Section } from "@components/Quiz";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { CurrentTalk } from "@components/Talk";
 import Patreon from "@shared/Patreon";
-import styled from 'styled-components';
-import { EditorCTA } from '@components/Editor';
+import styled from "styled-components";
+import { EditorCTA } from "@components/Editor";
 
 library.add(faPollH);
 

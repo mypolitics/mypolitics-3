@@ -1,4 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
+import { init } from "../../services/sentry";
+
+init();
 
 const handler = (req: IncomingMessage, res: ServerResponse): void => {
   res.statusCode = 200;

@@ -9,15 +9,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Obfuscate from "react-obfuscate";
 import useTranslation from "next-translate/useTranslation";
 import { Title } from "@shared/Typography";
-
-interface Props {
-  statusCode: number | null;
-}
+import * as Sentry from "@sentry/node";
 
 library.add(faEnvelope);
 
-const ErrorPage: NextPage<Props> = ({ statusCode }: Props) => {
+const ErrorPage: NextPage<any> = ({
+  statusCode,
+  hasGetInitialPropsRun,
+  err,
+}: any) => {
   const { t } = useTranslation("common");
+
+  if (!hasGetInitialPropsRun && err) {
+    Sentry.captureException(err);
+  }
 
   return (
     <CenteredPage fullWidth={false}>
@@ -33,14 +38,23 @@ const ErrorPage: NextPage<Props> = ({ statusCode }: Props) => {
   );
 };
 
-ErrorPage.getInitialProps = ({ res, err }) => {
+ErrorPage.getInitialProps = async ({ res, err, asPath }) => {
   let statusCode;
 
   if (res) {
+    Sentry.captureException(res);
     statusCode = res.statusCode;
   } else if (err) {
+    Sentry.captureException(err);
+
     statusCode = err.statusCode;
   }
+
+  Sentry.captureException(
+    new Error(`_error.js getInitialProps missing data at path: ${asPath}`)
+  );
+
+  await Sentry.flush(2000);
 
   return { statusCode };
 };
