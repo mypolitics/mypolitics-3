@@ -1,9 +1,10 @@
 import React from "react";
 import { AnswerEffect } from "@components/Results";
 import { SurveyAnswerType } from "@generated/graphql";
-import { itemTypes } from "@constants";
+import { ItemType } from "@constants";
 import { IdeologyItem } from "@components/Editor";
-import { Info } from "@components/Editor/EditorQuestion/EditorQuestionStyle";
+import useTranslation from "next-translate/useTranslation";
+import { EditorIconsDropArea } from "@components/Editor/EditorDropArea";
 import useQuestionEffectsDrop from "../utils/useQuestionEffectsDrop";
 import { UseQuestion } from "../utils/useQuestion";
 
@@ -12,14 +13,15 @@ interface Props {
 }
 
 const IdeologiesInput: React.FC<Props> = ({ question }) => {
+  const { t } = useTranslation("editor");
   const { data, handleChange } = question;
-  const args = { question, item: itemTypes.ideology };
-  const { ref: agreeRef } = useQuestionEffectsDrop({
+  const args = { question, item: ItemType.Ideology };
+  const { handleDrop: handleAgreeDrop } = useQuestionEffectsDrop({
     type: "agree",
     ...args,
   });
 
-  const { ref: disagreeRef } = useQuestionEffectsDrop({
+  const { handleDrop: handleDisagreeDrop } = useQuestionEffectsDrop({
     type: "disagree",
     ...args,
   });
@@ -37,35 +39,50 @@ const IdeologiesInput: React.FC<Props> = ({ question }) => {
 
   return (
     <>
-      <div ref={agreeRef}>
-        <AnswerEffect title="Ideologie za" type={SurveyAnswerType.Agree}>
-          {agreeIdeologies.map(({ id }) => (
-            <IdeologyItem
-              onClick={() => handleRemove(id, "agree")}
-              title="Kliknij, aby usunąć"
-              key={id}
-              id={id}
-            />
-          ))}
-          {agreeIdeologies.length === 0 && <Info>Upuść tutaj ideologię</Info>}
+      <div>
+        <AnswerEffect
+          title={t("question.ideologiesFor")}
+          type={SurveyAnswerType.Agree}
+        >
+          <EditorIconsDropArea
+            accept={ItemType.Ideology}
+            dropText={t("question.dropHereIdeology")}
+            clickText={t("question.clickHereIdeology")}
+            onDropOrAdd={handleAgreeDrop}
+            padding={0.5}
+          >
+            {agreeIdeologies.map(({ id }) => (
+              <IdeologyItem
+                onClick={() => handleRemove(id, "agree")}
+                title={t("question.clickToDelete")}
+                key={id}
+                id={id}
+              />
+            ))}
+          </EditorIconsDropArea>
         </AnswerEffect>
       </div>
-      <div ref={disagreeRef}>
+      <div>
         <AnswerEffect
-          title="Ideologie przeciw"
+          title={t("question.ideologiesAgainst")}
           type={SurveyAnswerType.Disagree}
         >
-          {disagreeIdeologies.map(({ id }) => (
-            <IdeologyItem
-              onClick={() => handleRemove(id, "disagree")}
-              title="Kliknij, aby usunąć"
-              key={id}
-              id={id}
-            />
-          ))}
-          {disagreeIdeologies.length === 0 && (
-            <Info>Upuść tutaj ideologię</Info>
-          )}
+          <EditorIconsDropArea
+            accept={ItemType.Ideology}
+            dropText={t("question.dropHereIdeology")}
+            clickText={t("question.clickHereIdeology")}
+            onDropOrAdd={handleDisagreeDrop}
+            padding={0.5}
+          >
+            {disagreeIdeologies.map(({ id }) => (
+              <IdeologyItem
+                onClick={() => handleRemove(id, "disagree")}
+                title={t("question.clickToDelete")}
+                key={id}
+                id={id}
+              />
+            ))}
+          </EditorIconsDropArea>
         </AnswerEffect>
       </div>
     </>

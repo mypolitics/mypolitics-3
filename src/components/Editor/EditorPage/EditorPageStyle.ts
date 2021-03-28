@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
-import { transparentize } from 'polished';
+import { spacingY } from "@utils/stylesUtils";
 
 export const Container = styled.section`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  ${spacingY(1)};
+  padding: 1rem;
+  border-radius: 0.25rem;
   background: ${({ theme }) => theme.colors.background};
 
+  ${breakpoint("sm")`
+     ${spacingY(1.5)};
+     padding: 1.5rem;
+     border-radius: 0.5rem;
+  `}
+
   ${breakpoint("md")`
-    grid-gap: 3rem;
+    ${spacingY(3)};
     padding: 3rem;
   `}
 `;
@@ -48,11 +52,11 @@ export const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 0.75rem;
+  margin-right: 0.75em;
 
   svg {
     color: ${({ theme }) => theme.colors.primary};
-    font-size: 1.5rem;
+    font-size: 1em;
   }
 `;
 
@@ -61,25 +65,4 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.textMuted};
   font-weight: ${({ theme }) => theme.fontWeight.secondary.bold};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-`;
-
-export const ContentWrapper = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-
-  ${breakpoint("xs", "md")`
-    display: none;
-  `}
-`;
-
-export const MobileInfo = styled.div`
-  background: ${({ theme }) => transparentize(0.9, theme.colors.red)};
-  color: ${({ theme }) => theme.colors.red};
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
-
-  ${breakpoint("md")`
-    display: none;
-  `}
 `;

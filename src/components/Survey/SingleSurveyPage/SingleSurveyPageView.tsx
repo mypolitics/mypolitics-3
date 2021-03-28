@@ -24,10 +24,12 @@ import {
   Title,
   AuthorHeader,
 } from "./SingleSurveyPageStyle";
+import { translate } from '@utils/translation';
 
 library.add(faArrowLeft, faUndoAlt, faTimes, faCheck);
 
 const SurveyPage: React.FC = () => {
+  const { t } = useTranslation("quiz");
   const { query } = useRouter();
   const { lang } = useTranslation();
   const { data, actions } = useSurvey(`${query.id}`);
@@ -40,11 +42,11 @@ const SurveyPage: React.FC = () => {
   return (
     <Container>
       <Header>
-        {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={quiz.title[lang]} />}
-        {!quiz.logoUrl && <Title>{quiz.title[lang]}</Title>}
+        {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />}
+        {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
       </Header>
       {quiz.type === QuizType.Community && (
-        <AuthorHeader>Quiz społecznościowy</AuthorHeader>
+        <AuthorHeader>{t("single.social")}</AuthorHeader>
       )}
       <Inner>
         <SurveyHeader actions={actions} data={data} />
@@ -57,15 +59,13 @@ const SurveyPage: React.FC = () => {
             }}
           >
             <span>
-              <FormQuestion>{currentQuestion.text[lang]}</FormQuestion>
+              <FormQuestion>{translate(currentQuestion.text, lang)}</FormQuestion>
             </span>
           </CSSTransition>
         </SwitchTransition>
         <SurveyAnswers data={data} actions={actions} />
       </Inner>
-      <BottomInfo>
-        Test możesz przerwać w każdym momencie, Twoje postępy są zapisywane
-      </BottomInfo>
+      <BottomInfo>{t("survey.bottomInfo")}</BottomInfo>
     </Container>
   );
 };

@@ -1,7 +1,11 @@
 import getConfig from "next/config";
+import { Language as LanguageGraphql } from "@generated/graphql";
 
 const { publicRuntimeConfig } = getConfig();
-export const BASE_PATH = publicRuntimeConfig.BASE_PATH || "";
+export const BASE_PATH =
+  typeof window !== "undefined"
+    ? window.location.origin
+    : publicRuntimeConfig.BASE_PATH || "";
 
 export const recaptchaSiteKey =
   publicRuntimeConfig.NODE_ENV === "production"
@@ -17,10 +21,10 @@ export const Headers = {
   ADMIN: "mypolitics-admin",
 };
 
-export const itemTypes = {
-  party: "party",
-  ideology: "ideology",
-};
+export enum ItemType {
+  Party = "party",
+  Ideology = "ideology",
+}
 
 export const paths = {
   home: "/",
@@ -41,6 +45,9 @@ export const paths = {
   quizzesAdvancedInitialize: "/quizzes/initialize/advanced",
   editorPanel: "/editor",
   editorAdmin: "/editor/admin",
+  editorVerifyRequested(slug: string): string {
+    return `/editor/${slug}/verify-requested`;
+  },
   editor(slug: string, verifyVersion?: string): string {
     return `/editor/${slug}${
       verifyVersion ? `?verifyVersion=${verifyVersion}` : ""
@@ -67,6 +74,10 @@ export const apiPaths = {
   upload: {
     icon: `${API_BASE}/upload/icon`,
   },
+  utils: {
+    image: (template: string, data: string): string =>
+      `${BASE_PATH}${API_BASE}/utils/images?template=${template}\&data=${data}`,
+  },
   facebook: {
     auth: `${API_BASE}/auth/facebook`,
   },
@@ -76,3 +87,29 @@ export const apiPaths = {
     facebook: `${API_BASE}/auth/facebook`,
   },
 };
+
+export const LANG_CODE = {
+  en: "en",
+  pl: "pl",
+};
+
+export interface Language {
+  id: string;
+  name: string;
+  enum: LanguageGraphql;
+}
+
+export const languages: Language[] = [
+  {
+    id: LANG_CODE.pl,
+    name: "Język polski",
+    enum: LanguageGraphql.Polish,
+  },
+  {
+    id: LANG_CODE.en,
+    name: "English language",
+    enum: LanguageGraphql.English,
+  },
+];
+
+export const titleTemplate = "%s | myPolitics";

@@ -1,8 +1,11 @@
 import { EditorQuizQuery, UpdateQuizInput } from "@generated/graphql";
+import { useLanguages } from "@components/Editor/utils/useLanguages";
 
 const useBasicInput = (
   quizData?: EditorQuizQuery
 ): UpdateQuizInput | undefined => {
+  const languages = useLanguages(quizData);
+
   if (!quizData) {
     return undefined;
   }
@@ -14,6 +17,7 @@ const useBasicInput = (
     title,
     logoUrl,
     description,
+    languages,
   };
 };
 

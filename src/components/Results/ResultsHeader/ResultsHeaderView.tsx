@@ -5,14 +5,14 @@ import {
   ResultsPoliticianPartsFragment,
 } from "@generated/graphql";
 import useTranslation from "next-translate/useTranslation";
-import dayjs from "dayjs";
 import Link from "next/link";
 import { paths } from "@constants";
+import { translate } from "@utils/translation";
 import {
   Info,
   Header,
   Logo,
-  Date,
+  Date as HeaderDate,
   Id,
   PoliticianSubHeader,
   Title,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const ResultsHeader: React.FC<Props> = ({ results, politician }) => {
-  const { lang } = useTranslation();
+  const { t, lang } = useTranslation("results");
   const { quiz, updatedAt, id } = results;
   const path = paths.quiz(quiz.slug);
 
@@ -36,19 +36,26 @@ const ResultsHeader: React.FC<Props> = ({ results, politician }) => {
           <Link href={path}>
             <a>
               {quiz.logoUrl && (
-                <Logo src={quiz.logoUrl} alt={quiz.title[lang]} />
+                <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
               )}
-              {!quiz.logoUrl && <Title>{quiz.title[lang]}</Title>}
+              {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
             </a>
           </Link>
         </div>
         <Info>
-          <Date>
-            <span>Ukończono</span>&nbsp;
-            {dayjs(updatedAt).locale(lang).format("DD.MM.YYYY, HH:MM")}
-          </Date>
+          <HeaderDate>
+            <span>{t("header.finished")}</span>&nbsp;
+            {new Date(updatedAt).toLocaleString(undefined, {
+              hour12: false,
+              day: "numeric",
+              month: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+            })}
+          </HeaderDate>
           <Id>
-            <span>ID:</span>
+            <span>{t("header.id")}</span>
             {id}
           </Id>
         </Info>
@@ -57,7 +64,7 @@ const ResultsHeader: React.FC<Props> = ({ results, politician }) => {
         <PoliticianSubHeader>{politician.name}</PoliticianSubHeader>
       )}
       {quiz.type === QuizType.Community && (
-        <AuthorHeader>Quiz społecznościowy</AuthorHeader>
+        <AuthorHeader>{t("header.social")}</AuthorHeader>
       )}
     </div>
   );

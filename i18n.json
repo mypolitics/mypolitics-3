@@ -1,11 +1,24 @@
 {
-  "locales": ["pl"],
+  "locales": ["pl", "en"],
   "defaultLocale": "pl",
   "pages": {
     "*": ["common"],
     "/": ["home"],
     "rgx:^\\/articles|.+": ["articles"],
     "rgx:^\\/quizzes$|.+": ["quiz"],
-    "rgx:^\\/results|.+": ["quiz"]
-  }
+    "rgx:^\\/results|.+": ["quiz", "results"],
+    "rgx:^\\/editor|.+": ["editor"],
+    "rgx:^\\/auth|.+": ["auth"],
+    "rgx:^\\/survey|.+": ["quiz"]
+  },
+  "domains": [
+    {
+      "domain": "mypolitics.pl",
+      "defaultLocale": "pl"
+    },
+    {
+      "domain": "mypolitics.eu",
+      "defaultLocale": "en"
+    }
+  ]
 }

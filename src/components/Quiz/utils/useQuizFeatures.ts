@@ -14,17 +14,20 @@ export const useQuizFeatures = (
   const { questionsNumber, ...featuresWoQuestionsNumber } = features;
   const featuresData = firstTimer ? featuresWoQuestionsNumber : features;
 
+  const getTranslatedName = (key: string, options?: Record<string, any>) =>
+    t(`features.${key}`, options, { fallback: `quiz:features.${key}.other` });
+
   Object.entries(featuresData).forEach(([key, featureValue]) => {
     if (featureValue <= 0) {
       return;
     }
 
     if (typeof featureValue === "boolean") {
-      quizFeatures.push(t(`features.${key}`));
+      quizFeatures.push(getTranslatedName(key));
     }
 
     if (typeof featureValue === "number") {
-      quizFeatures.push(t(`features.${key}`, { number: featureValue }));
+      quizFeatures.push(getTranslatedName(key, { count: featureValue }));
     }
   });
 

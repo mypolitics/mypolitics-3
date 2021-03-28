@@ -7,6 +7,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import IdeologiesInput from "@components/Editor/EditorQuestion/IdeologiesInput";
 import { UseEditor } from "@components/Editor/utils/useEditor";
 import ActionButton from "@shared/ActionButton";
+import useTranslation from "next-translate/useTranslation";
 import useQuestion from "./utils/useQuestion";
 import {
   NumberWrapper,
@@ -25,30 +26,24 @@ interface Props {
 }
 
 const EditorQuestion: React.FC<Props> = ({ questionId, index, editor }) => {
+  const { t } = useTranslation("editor");
   const { actions } = editor;
   const question = useQuestion(questionId);
-  const [deleteConfirmed, setDeleteConfirmed] = useState<boolean>(false);
   const [opened, setOpened] = useState<boolean>(false);
 
-  const handleDeleteConfirm = () => {
-    if (!deleteConfirmed) {
-      setDeleteConfirmed(true);
-      setTimeout(() => setDeleteConfirmed(false), 2000);
-      return;
-    }
-
+  const handleDeleteClick = () => {
     actions.question.delete(questionId);
   };
 
   const header = (
     <>
       <NumberWrapper>
-        Pytanie&nbsp;<span>#{index + 1}</span>
+        {t("question.title")}&nbsp;<span>#{index + 1}</span>
       </NumberWrapper>
       <ActionsWrapper>
         <ActionButton
-          onClick={handleDeleteConfirm}
-          title="Usuń pytanie"
+          onClick={handleDeleteClick}
+          title={t("question.deleteButton")}
           mustConfirm
           variant="red"
           size="large"
@@ -64,7 +59,6 @@ const EditorQuestion: React.FC<Props> = ({ questionId, index, editor }) => {
 
   const rerender = JSON.stringify({
     data: question.data,
-    deleteConfirmed,
     opened,
     index,
   });
@@ -79,6 +73,8 @@ const EditorQuestion: React.FC<Props> = ({ questionId, index, editor }) => {
           />
           <Row>
             <PartiesInput question={question} />
+          </Row>
+          <Row>
             <IdeologiesInput question={question} />
           </Row>
         </Box>

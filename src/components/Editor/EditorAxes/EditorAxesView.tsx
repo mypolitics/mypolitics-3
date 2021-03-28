@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { UseEditor } from "@components/Editor/utils/useEditor";
+import useTranslation from "next-translate/useTranslation";
 import { Container } from "./EditorAxesStyle";
 import Axis from "./Axis";
 
@@ -15,15 +16,13 @@ interface Props {
 }
 
 const EditorAxes: React.FC<Props> = ({ editor }) => {
+  const { t } = useTranslation("editor");
   const { actions, data } = editor;
   const { axes } = data.data.quiz.lastUpdatedVersion;
-  const handleNewAxis = () => actions.axes.add([null, null]);
-  const axesJson = JSON.stringify({ axes });
-  const axesList = useMemo(
-    () =>
-      axes.map((axis) => <Axis key={axis.id} data={axis} editor={editor} />),
-    [axesJson]
-  );
+  const handleNewAxis = () => actions.axes.add();
+  const axesList = axes.map((axis) => (
+    <Axis key={axis.id} data={axis} editor={editor} />
+  ));
 
   return (
     <Container>
@@ -33,7 +32,7 @@ const EditorAxes: React.FC<Props> = ({ editor }) => {
         background="bluish"
         beforeIcon={<FontAwesomeIcon icon={faPlus} />}
       >
-        Utwórz oś
+        {t("axes.createButton")}
       </Button>
     </Container>
   );

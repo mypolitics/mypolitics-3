@@ -1,7 +1,14 @@
 import { Country } from "@generated/graphql";
+import useTranslation from "next-translate/useTranslation";
 
-export const useCountries = (): Record<Country, string> => ({
-  [Country.Poland]: "Polska",
-  [Country.England]: "Wielka Brytania",
-  [Country.UnitedStates]: "USA",
-});
+const defaultList = [Country.Poland, Country.England, Country.UnitedStates];
+
+export const useCountries = (
+  list: Country[] = defaultList
+): Record<Country, string> => {
+  const { t } = useTranslation("common");
+
+  const dataEntries = Object.values(list).map((k) => [k, t(`country.${k}`)]);
+
+  return Object.fromEntries(dataEntries);
+};

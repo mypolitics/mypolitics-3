@@ -6,7 +6,6 @@ import {
 } from "@generated/graphql";
 import { paths } from "@constants";
 import Link from "next/link";
-import dayjs from "dayjs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { LeanSurvey } from "@components/Survey";
@@ -16,6 +15,7 @@ import { Chips, ListElement, RemoveButton, Text } from "./SurveyLinkStyle";
 library.add(faTrash);
 
 const SurveyLink: React.FC<{ survey: LeanSurvey }> = ({ survey }) => {
+  const { t } = useTranslation("quiz");
   const { lang } = useTranslation();
   const [remove] = useDeleteSurveyMutation({
     variables: { id: survey.id },
@@ -46,10 +46,23 @@ const SurveyLink: React.FC<{ survey: LeanSurvey }> = ({ survey }) => {
     <Link href={href} passHref>
       <ListElement>
         <Text>
-          {dayjs(survey.updatedAt).locale(lang).format("DD.MM.YYYY HH:MM")}
+            {new Date(survey.updatedAt).toLocaleString(undefined, {
+                hour12: false,
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            })}
         </Text>
-        {survey.finished && <Chips background="green">ukończone</Chips>}
-        {!survey.finished && <Chips background="yellow">w trakcie</Chips>}
+        {survey.finished && (
+          <Chips background="green">{t("surveyHistory.type.finished")}</Chips>
+        )}
+        {!survey.finished && (
+          <Chips background="yellow">
+            {t("surveyHistory.type.notFinishedYet")}
+          </Chips>
+        )}
         <RemoveButton clicked={removeClicked} onClick={handleRemoveClick}>
           <FontAwesomeIcon icon={faTrash} />
         </RemoveButton>

@@ -20,6 +20,7 @@ import {
   TalksByFilterQuery,
   PatreonQuery,
   PatreonDocument,
+  Language,
 } from "@generated/graphql";
 import { initializeApollo } from "@services/apollo";
 import ShareSocial from "@shared/ShareSocial";
@@ -31,6 +32,9 @@ import { CurrentTalk } from "@components/Talk";
 import Patreon from "@shared/Patreon";
 import styled from "styled-components";
 import { EditorCTA } from "@components/Editor";
+import useTranslation from "next-translate/useTranslation";
+import { languages } from "@constants";
+import { toLanguageEnum } from '@utils/toLanguageEnum';
 
 library.add(faPollH);
 
@@ -58,45 +62,54 @@ const Home: React.FC<Props> = ({
   partners,
   featuredQuizzes,
   patreons,
-}) => (
-  <PageContainer>
-    <Hero />
-    <CurrentTalk />
-    <QuizSection />
-    <InnerSection>
-      <Section
-        title="Testy poglądów politycznych"
-        icon={<FontAwesomeIcon icon={faPollH} />}
-      >
-        {featuredQuizzes.map((quiz) => (
-          <Link
-            featured={quiz.slug === "mypolitics"}
-            key={quiz.id}
-            quiz={quiz}
-          />
-        ))}
-      </Section>
-      <EditorCTA />
-    </InnerSection>
-    <NewsSection posts={posts} />
-    <TalkSection talks={talks} />
-    <PartnersSection partners={partners} />
-    <ContactActionSection
-      title={
-        <Trans
-          i18nKey="common:contact.title"
-          components={[<React.Fragment key="0" />, <b key="1" />]}
-        />
-      }
-    />
-    <InnerSection>
-      <Patreon patreons={patreons} />
-      <ShareSocial />
-    </InnerSection>
-  </PageContainer>
-);
+}) => {
+  const { t } = useTranslation("common");
 
-export const getServerSideProps = async (): Promise<{ props: Props }> => {
+  return (
+    <PageContainer>
+      <Hero />
+      <CurrentTalk />
+      <QuizSection />
+      <InnerSection>
+        <Section
+          title={t("standardPage.section.quizzes.title")}
+          icon={<FontAwesomeIcon icon={faPollH} />}
+        >
+          {featuredQuizzes.map((quiz) => (
+            <Link
+              featured={quiz.slug === "mypolitics"}
+              key={quiz.id}
+              quiz={quiz}
+              showType
+            />
+          ))}
+        </Section>
+        <EditorCTA />
+      </InnerSection>
+      <NewsSection posts={posts} />
+      <TalkSection talks={talks} />
+      <PartnersSection partners={partners} />
+      <ContactActionSection
+        title={
+          <Trans
+            i18nKey="common:contact.title"
+            components={[<React.Fragment key="0" />, <b key="1" />]}
+          />
+        }
+      />
+      <InnerSection>
+        <Patreon patreons={patreons} />
+        <ShareSocial />
+      </InnerSection>
+    </PageContainer>
+  );
+};
+
+export const getServerSideProps = async ({
+  locale,
+}: {
+  locale: string;
+}): Promise<{ props: Props }> => {
   const client = initializeApollo();
 
   const postsQuery = getManyPosts({
@@ -117,6 +130,9 @@ export const getServerSideProps = async (): Promise<{ props: Props }> => {
 
   const quizzesQuery = client.query<FeaturedQuizzesQuery>({
     query: FeaturedQuizzesDocument,
+    variables: {
+      lang: toLanguageEnum(locale),
+    },
   });
 
   const patreonQuery = client.query<PatreonQuery>({
@@ -136,7 +152,10 @@ export const getServerSideProps = async (): Promise<{ props: Props }> => {
       posts: posts || [],
       talks: talks?.data?.talks || [],
       partners: partners?.data.partner.partners || [],
-      featuredQuizzes: quizzes?.data.featuredQuizzes || [],
+      featuredQuizzes: [
+        ...(quizzes?.data.featuredQuizzes || []),
+        ...(quizzes?.data.socialQuizzes || []).slice(0, 2),
+      ],
       patreons: patreons?.data.patreon,
     },
   };

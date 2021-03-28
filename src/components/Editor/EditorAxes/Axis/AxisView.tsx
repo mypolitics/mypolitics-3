@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import {
   EditorAxisPartsFragment,
   EditorAxisPartsFragmentDoc,
@@ -12,13 +12,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import useEntity from "@components/Editor/utils/useEntity";
 import { UseEditor } from "@components/Editor/utils/useEditor";
 import ActionButton from "@shared/ActionButton";
-import { useAxisDrop, useIdeology } from "./AxisUtils";
+import { translate } from "@utils/translation";
+import { ItemType } from "@constants";
+import { useAxisSelect, useIdeology } from "./AxisUtils";
 import {
   Container,
-  Info,
   IdeologyContainer,
-  IdeologyDeleteButton,
   IdeologyName,
+  IdeologyDropArea,
   Wrapper,
 } from "./AxisStyle";
 
@@ -29,13 +30,14 @@ const AxisIdeology: React.FC<{
   side: "left" | "right";
   axisId: string;
 }> = ({ data, side, axisId }) => {
+  const { t } = useTranslation("editor");
   const { update } = useEntity({
     id: axisId,
     name: "QuizAxis",
     document: EditorAxisPartsFragmentDoc,
   });
   const { lang } = useTranslation();
-  const { ref } = useAxisDrop({
+  const { handleDrop } = useAxisSelect({
     side,
     axisId,
   });
@@ -45,20 +47,23 @@ const AxisIdeology: React.FC<{
       [side]: null,
     });
 
-  if (!data) {
-    return <Info ref={ref}>Upuść ideologię</Info>;
-  }
-
-  const { name, icon, color } = data;
-
   return (
-    <IdeologyContainer color={color}>
-      <IdeologyIcon icon={icon} />
-      <IdeologyName>{name[lang]}</IdeologyName>
-      <ActionButton variant="white" onClick={handleDelete}>
-        <FontAwesomeIcon icon={faTimes} />
-      </ActionButton>
-    </IdeologyContainer>
+    <IdeologyDropArea
+      accept={ItemType.Ideology}
+      dropText={t("question.dropHereIdeology")}
+      clickText={t("question.clickHereIdeology")}
+      onDropOrAdd={handleDrop}
+    >
+      {data && (
+        <IdeologyContainer color={data.color}>
+          <IdeologyIcon icon={data.icon} />
+          <IdeologyName>{translate(data.name, lang)}</IdeologyName>
+          <ActionButton variant="white" onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTimes} />
+          </ActionButton>
+        </IdeologyContainer>
+      )}
+    </IdeologyDropArea>
   );
 };
 
@@ -68,32 +73,31 @@ interface Props {
 }
 
 const Axis: React.FC<Props> = ({ data, editor }) => {
+  const { t } = useTranslation("editor");
   const { axes } = editor.actions;
-  const [deleteConfirmed] = useState<boolean>(false);
   const leftIdeology = useIdeology(data?.left && data.left.id);
   const rightIdeology = useIdeology(data?.right && data.right.id);
-  const dataJson = JSON.stringify({ data });
 
-  return useMemo(
-    () => (
-      <Wrapper>
-        <Container>
-          <AxisIdeology axisId={data.id} data={leftIdeology} side="left" />
-          <AxisIdeology axisId={data.id} data={rightIdeology} side="right" />
-        </Container>
-        <ActionButton
-          onClick={() => axes.delete(data.id)}
-          title="Usuń oś"
-          mustConfirm
-          variant="red"
-          size="large"
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </ActionButton>
-      </Wrapper>
-    ),
-    [dataJson, deleteConfirmed]
+  return (
+    <Wrapper>
+      <Container>
+        <AxisIdeology axisId={data.id} data={leftIdeology} side="left" />
+        <AxisIdeology axisId={data.id} data={rightIdeology} side="right" />
+      </Container>
+      <ActionButton
+        onClick={() => axes.delete(data.id)}
+        title={t("axes.deleteButton")}
+        mustConfirm
+        variant="red"
+        size="large"
+      >
+        <FontAwesomeIcon icon={faTrash} />
+      </ActionButton>
+    </Wrapper>
   );
 };
 
-export default Axis;
+const areEqual = (prev: Props, next: Props) =>
+  JSON.stringify(prev.data) === JSON.stringify(next.data);
+
+export default React.memo(Axis, areEqual);

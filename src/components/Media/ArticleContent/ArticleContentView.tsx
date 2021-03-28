@@ -4,20 +4,19 @@ import Comments from "@shared/Comments";
 import ShareSocial from "@shared/ShareSocial";
 import { PostOrPage } from "@tryghost/content-api";
 import GoogleAd from "@shared/GoogleAd";
-import dayjs from "dayjs";
 import AuthorHeader from "@components/Media/ArticleContent/AuthorHeader";
 import AuthorInfo from "@components/Media/ArticleContent/AuthorInfo";
 import { Like } from "react-facebook";
 import { ArticleHead } from "@components/Media";
 import { paths } from "@constants";
 import Trans from "next-translate/Trans";
+import useTranslation from "next-translate/useTranslation";
 import ContactActionSection from "@shared/ContactActionSection";
 import { useInView } from "react-hook-inview";
 import { useRouter } from "next/router";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useTheme } from "styled-components";
-import { rgba } from "polished";
 import { Spinner } from "@shared/Loading";
 import {
   Container,
@@ -85,9 +84,11 @@ const ArticleContent: React.FC<Props> = ({
     title,
     excerpt,
     custom_excerpt: customExcerpt,
+    reading_time: readingTime,
   } = post;
   const router = useRouter();
-  const path = paths.article(post.slug, post.id);
+  const { t } = useTranslation("articles");
+  const path = paths.article(post.slug);
   const [ref, inView] = useInView();
   const [timeout, setTimeoutValue] = useState<NodeJS.Timeout | undefined>();
   const [timeoutStart, setTimeoutStart] = useState<number>();
@@ -130,7 +131,13 @@ const ArticleContent: React.FC<Props> = ({
         <ContentWrapper>
           <Header>
             <Title>{title}</Title>
-            <Lead as="div">{dayjs(publishedAt).format("DD.MM.YYYY")}</Lead>
+            <Lead as="div">
+                          {[
+                  new Date(publishedAt).toLocaleDateString(),
+                "•",
+                t("header.readingTime", { count: readingTime }),
+              ].join(" ")}
+            </Lead>
           </Header>
           <AuthorHeader post={post} />
         </ContentWrapper>

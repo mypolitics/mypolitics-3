@@ -13,13 +13,15 @@ import Button from "@shared/Button";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { BASE_PATH, paths, recaptchaSiteKey } from "@constants";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
 import {
   CurrentUserQuizzesDocument,
   useCreateSurveyMutation,
   useRequestQuizVerifyMutation,
 } from "@generated/graphql";
 import hash from "object-hash";
+import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import {
   Container,
   RequirementContainer,
@@ -39,7 +41,8 @@ interface Props {
 }
 
 const EditorFooter: React.FC<Props> = ({ editor }) => {
-  const { addToast } = useToasts();
+  const { t } = useTranslation("editor");
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { actions, versionInput, basicInput, data } = editor;
   const [testedVersion, setTestedVersion] = useState<TestedVersion>();
@@ -48,11 +51,7 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
   const { data: requirements } = useRequirements(editor);
   const quizPath = `${BASE_PATH}/quizzes/${data.data.quiz.slug}`;
   const [requestVerify] = useRequestQuizVerifyMutation({
-    onCompleted: () =>
-      addToast(
-        "Pomyślnie przesłano test do weryfikacji. O jego statusie dowiesz się w panelu twórcy",
-        { appearance: "success" }
-      ),
+    onCompleted: () => toast.success(t("footer.verifyToast")),
     refetchQueries: [
       {
         query: CurrentUserQuizzesDocument,
@@ -119,6 +118,7 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
 
       setTestedVersion(null);
       setRecaptcha("");
+      await router.push(paths.editorVerifyRequested(data.data.quiz.slug));
     } catch (e) {
       console.error(e);
     }
@@ -130,11 +130,12 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
     <Container>
       <div>
         <Info>
-          Link do quizu:&nbsp;
+          {t("footer.urlTitle")}&nbsp;
           <span
             onClick={() => {
               navigator.clipboard.writeText(quizPath);
-              addToast("Skopiowano do schowka", { appearance: "success" });
+
+              toast.success(t("footer.urlToast"));
             }}
           >
             {quizPath}&nbsp;
@@ -144,13 +145,7 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
       </div>
       <div>
         {!requirementsFullfilled && (
-          <Box
-            header={
-              <Title>
-                Spełnij poniższe wymagania, aby móc przesłać swój quiz
-              </Title>
-            }
-          >
+          <Box header={<Title>{t("footer.requirements.title")}</Title>}>
             {requirementsList}
           </Box>
         )}
@@ -162,8 +157,9 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
             loading={loading}
             disabled={loading}
             showShadow
+            isFullWidth
           >
-            Przetestuj przed weryfikacją
+            {t("footer.testBeforeVerify")}
           </Button>
         )}
         {versionTested && !recaptcha && (
@@ -177,8 +173,9 @@ const EditorFooter: React.FC<Props> = ({ editor }) => {
             loading={loading}
             disabled={loading}
             pulsating
+            isFullWidth
           >
-            Prześlij do weryfikacji
+            {t("footer.verifyRequest")}
           </Button>
         )}
       </div>

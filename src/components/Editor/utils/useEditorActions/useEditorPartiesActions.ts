@@ -1,6 +1,6 @@
 import {
   CreatePartyInput, EditorAxisPartsFragment, EditorAxisPartsFragmentDoc,
-  EditorIdeologyPartsFragmentDoc,
+  EditorIdeologyPartsFragmentDoc, EditorPartyPartsFragment,
   EditorPartyPartsFragmentDoc, EditorQuestionPartsFragment, EditorQuestionPartsFragmentDoc,
   QuizCompassMode,
   UpdatePartyInput,
@@ -20,6 +20,7 @@ export interface PartiesActions {
   delete(id: string);
   add(data: CreatePartyInput): Promise<void>;
   update(id: string, data: UpdatePartyInput);
+  import(data: EditorPartyPartsFragment[]): void;
 }
 
 const useEditorPartiesActions = (
@@ -75,6 +76,8 @@ const useEditorPartiesActions = (
     },
     update: async (id: string, values: UpdatePartyInput) => {
       try {
+        (values as any).viewerCanEdit = undefined;
+
         const { update: updateEntity } = getEntity({
           id,
           name: "Party",
@@ -104,16 +107,37 @@ const useEditorPartiesActions = (
           },
         });
 
+        const party = {
+          ...data.createParty,
+          viewerCanEdit: true,
+        };
+
         update({
           quiz: {
             lastUpdatedVersion: {
-              parties: [...currentParties, data.createParty],
+              parties: [...currentParties, party],
             },
           },
         });
       } catch (e) {
         console.error(e);
       }
+    },
+    import: async (values) => {
+      const currentData = getCurrentData();
+      const currentParties = currentData.quiz.lastUpdatedVersion.parties;
+      const currentPartiesIds = currentParties.map((p) => p.id);
+      const filteredParties = values.filter(
+        ({ id }) => !currentPartiesIds.includes(id)
+      );
+
+      update({
+        quiz: {
+          lastUpdatedVersion: {
+            parties: [...currentParties, ...filteredParties],
+          },
+        },
+      });
     },
   };
 };

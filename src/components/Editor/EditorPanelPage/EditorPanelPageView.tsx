@@ -22,13 +22,14 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { paths } from "@constants";
 import { ErrorCode } from "@typeDefs/error";
+import { toLanguageEnum } from "@utils/toLanguageEnum";
 import { Title, ButtonWrapper } from "./EditorPanelPageStyle";
 
 library.add(faPencilRuler, faPollH, faPlus);
 
 const EditorListPage: React.FC = () => {
+  const { t, lang } = useTranslation("editor");
   const router = useRouter();
-  const { lang } = useTranslation();
   const { data, loading } = useCurrentUserQuizzesQuery({
     onError: (error) => {
       const message = error.graphQLErrors[0].message as any;
@@ -45,12 +46,13 @@ const EditorListPage: React.FC = () => {
     variables: {
       values: {
         title: {
-          [lang]: "Mój nowy quiz",
+          [lang]: t("panel.defaultQuizValues.title"),
         },
         description: {
-          [lang]: "Tu będzie fajny opis",
+          [lang]: t("panel.defaultQuizValues.description"),
         },
         logoUrl: "",
+        languages: [toLanguageEnum(lang)],
       },
     },
     refetchQueries: [
@@ -68,11 +70,11 @@ const EditorListPage: React.FC = () => {
       <GoogleAd id="myp3-standard-top" />
       <Title>
         <FontAwesomeIcon icon={faPencilRuler} />
-        <span>Panel twórcy</span>
+        <span>{t("panel.title")}</span>
       </Title>
       <QuizzesSection
         icon={<FontAwesomeIcon icon={faPollH} />}
-        title="Twoje quizy"
+        title={t("panel.section.quizzes.title")}
       >
         {loading && <Loading />}
         {quizzes.map((quiz) => (
@@ -88,7 +90,7 @@ const EditorListPage: React.FC = () => {
             disabled={createQuizLoading}
             pulsating
           >
-            Stwórz nowy
+            {t("panel.section.quizzes.createButton")}
           </Button>
         </ButtonWrapper>
       </QuizzesSection>

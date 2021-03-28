@@ -12,6 +12,7 @@ import { getRandomPosts } from "@services/ghost";
 import { PostOrPage } from "@tryghost/content-api";
 import { categoriesConfig } from "@components/Media/utils/useCategory";
 import { NextPageContext } from "next";
+import { toLanguageEnum } from "@utils/toLanguageEnum";
 
 export interface StandardPageProps {
   articles: PostOrPage[];
@@ -27,20 +28,21 @@ export const getStandardPageProps = async ({
   const client = initializeApollo();
   const [viewTag, newsTag] = categoriesConfig[locale];
   const notCurrentFilter = `slug:-['${query.slug}']`;
+  const languageEnum = toLanguageEnum(locale);
 
   const newsQuery = getRandomPosts({
     limit: 1,
-    filter: `tag:${newsTag}+${notCurrentFilter}`,
+    filter: `tags:${newsTag}+${notCurrentFilter}`,
   });
 
   const viewQuery = getRandomPosts({
     limit: 2,
-    filter: `tag:${viewTag}+${notCurrentFilter}`,
+    filter: `tags:${viewTag}+${notCurrentFilter}`,
   });
 
   const randomArticleQuery = getRandomPosts({
     limit: 1,
-    filter: `tag:${viewTag}+${notCurrentFilter}`,
+    filter: `tags:${viewTag}+${notCurrentFilter}`,
     fields: ["id", "title", "slug", "feature_image", "published_at"],
     include: ["tags", "authors"],
   });
@@ -50,11 +52,17 @@ export const getStandardPageProps = async ({
     variables: {
       limit: 3,
       sort: "end:desc",
+      where: {
+        lang: locale,
+      },
     },
   });
 
   const quizzesQuery = client.query<FeaturedQuizzesQuery>({
     query: FeaturedQuizzesDocument,
+    variables: {
+      lang: languageEnum,
+    },
   });
 
   const patreonQuery = client.query<PatreonQuery>({
@@ -80,7 +88,10 @@ export const getStandardPageProps = async ({
   return {
     articles: [...(news || []), ...(view || []), ...(randomArticles || [])],
     talks: talks?.data.talks || [],
-    quizzes: quizzes?.data.featuredQuizzes || [],
     patreons: patreons?.data.patreon,
+    quizzes: [
+      ...(quizzes?.data.featuredQuizzes || []),
+      ...(quizzes?.data.socialQuizzes.slice(0, 3) || []),
+    ],
   };
 };

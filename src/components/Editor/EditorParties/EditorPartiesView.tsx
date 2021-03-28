@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import LanguageSelect from "@shared/LanguageSelect";
 import { UseEditor } from "@components/Editor/utils/useEditor";
 import Button from "@shared/Button";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import CountrySelect from "@shared/CountrySelect";
 import { Country } from "@generated/graphql";
+import useTranslation from "next-translate/useTranslation";
 import { ListContainer } from "./EditorPartiesStyle";
 import PartyCard from "./PartyCard";
 import PartyCreate from "./PartyCreate";
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const EditorParties: React.FC<Props> = ({ editor }) => {
+  const { t } = useTranslation("editor");
   const [country, setCountry] = useState<Country>(Country.Poland);
   const [showModal, setShowModal] = useState<boolean>(false);
   const { data } = editor;
@@ -48,7 +49,7 @@ const EditorParties: React.FC<Props> = ({ editor }) => {
           background="bluish"
           beforeIcon={<FontAwesomeIcon icon={faPlus} />}
         >
-          Utwórz partię
+          {t("parties.create")}
         </Button>
         <PartyCreate
           show={showModal}

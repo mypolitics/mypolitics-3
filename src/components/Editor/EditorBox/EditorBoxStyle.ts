@@ -1,12 +1,17 @@
 import styled from "styled-components";
+import { spacingY } from "@utils/stylesUtils";
+import breakpoint from "styled-components-breakpoint";
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 1rem;
+  ${spacingY(1)};
   padding: 1.5rem;
   border-radius: 0.5rem;
   background: ${({ theme }) => theme.colors.backgroundDarken};
+
+  ${breakpoint("xs", "sm")`
+    ${spacingY(0.75)};
+    padding: 1rem;
+  `}
 `;
 
 export const SideWrapper = styled.div`
@@ -22,7 +27,7 @@ export const Divider = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  ${spacingY(1)};
 `;

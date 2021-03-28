@@ -3,34 +3,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilRuler } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Content } from "@components/Editor";
-import {
-  Container,
-  ContentWrapper,
-  Header,
-  IconWrapper,
-  Title,
-  MobileInfo,
-} from "./EditorPageStyle";
+import useTranslation from "next-translate/useTranslation";
+import { Container, Header, IconWrapper, Title } from "./EditorPageStyle";
 
 library.add(faPencilRuler);
 
-const EditorPage: React.FC = () => (
-  <Container>
-    <Header>
+const EditorPage: React.FC = () => {
+  const { t } = useTranslation("editor");
+
+  return (
+    <Container>
+      <Header>
+        <div>
+          <IconWrapper>
+            <FontAwesomeIcon icon={faPencilRuler} />
+          </IconWrapper>
+          <Title>{t("header.title")}</Title>
+        </div>
+      </Header>
       <div>
-        <IconWrapper>
-          <FontAwesomeIcon icon={faPencilRuler} />
-        </IconWrapper>
-        <Title>Edytor quizu</Title>
+        <Content />
       </div>
-    </Header>
-    <ContentWrapper>
-      <Content />
-    </ContentWrapper>
-    <MobileInfo>
-      Edytor quizów jest dostępny tylko w wersji komputerowej.
-    </MobileInfo>
-  </Container>
-);
+    </Container>
+  );
+};
 
 export default EditorPage;

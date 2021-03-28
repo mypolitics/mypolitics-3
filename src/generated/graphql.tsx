@@ -1597,6 +1597,7 @@ export type CreateQuizInput = {
   logoUrl: Scalars['String'];
   title: TextTranslationInput;
   description: TextTranslationInput;
+  languages: Array<Language>;
 };
 
 export type CreateQuizVersionInput = {
@@ -1787,6 +1788,7 @@ export type QuizMeta = {
   votes: QuizVotes;
   authors: Array<User>;
   license: QuizLicense;
+  languages: Array<Language>;
 };
 
 export type QuizStatistics = {
@@ -1808,6 +1810,9 @@ export enum QuizVerificationState {
 
 export type QuizVerifyRequest = {
   __typename?: 'QuizVerifyRequest';
+  id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   version: QuizVersion;
   moderator?: Maybe<User>;
   reason?: Maybe<Scalars['String']>;
@@ -1995,6 +2000,7 @@ export type UpdateQuizInput = {
   logoUrl?: Maybe<Scalars['String']>;
   description?: Maybe<TextTranslationInput>;
   currentVersion?: Maybe<Scalars['String']>;
+  languages: Array<Language>;
 };
 
 export type UpdateQuizVersionInput = {
@@ -2071,6 +2077,7 @@ export type Query = {
   featuredQuizzes: Array<Quiz>;
   currentUserQuizzes: Array<Quiz>;
   verifyQueueQuizzes: Array<Quiz>;
+  socialQuizzes: Array<Quiz>;
   quizVersion: QuizVersion;
   me: User;
   results: Results;
@@ -2247,6 +2254,11 @@ export type QuerySurveyArgs = {
 
 export type QueryQuizArgs = {
   slug: Scalars['String'];
+};
+
+
+export type QuerySocialQuizzesArgs = {
+  lang: Language;
 };
 
 
@@ -2634,6 +2646,25 @@ export type EditorQuestionPartsFragment = (
   ) }
 );
 
+export type EditorQuizIdeologiesQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type EditorQuizIdeologiesQuery = (
+  { __typename?: 'Query' }
+  & { quiz: (
+    { __typename?: 'Quiz' }
+    & { currentVersion: (
+      { __typename?: 'QuizVersion' }
+      & { ideologies: Array<Maybe<(
+        { __typename?: 'Ideology' }
+        & EditorIdeologyPartsFragment
+      )>> }
+    ) }
+  ) }
+);
+
 export type EditorQuizQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -2681,6 +2712,23 @@ export type EditorQuizQuery = (
         { __typename?: 'Ideology' }
         & EditorIdeologyPartsFragment
       )>>, parties: Array<Maybe<(
+        { __typename?: 'Party' }
+        & EditorPartyPartsFragment
+      )>> }
+    ) }
+  ) }
+);
+
+export type EditorStandardPartiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type EditorStandardPartiesQuery = (
+  { __typename?: 'Query' }
+  & { quiz: (
+    { __typename?: 'Quiz' }
+    & { currentVersion: (
+      { __typename?: 'QuizVersion' }
+      & { parties: Array<Maybe<(
         { __typename?: 'Party' }
         & EditorPartyPartsFragment
       )>> }
@@ -2876,6 +2924,19 @@ export type PostsByFilterQuery = (
   )>>> }
 );
 
+export type ChangeCodeMutationVariables = Exact<{
+  code: Array<Scalars['String']>;
+}>;
+
+
+export type ChangeCodeMutation = (
+  { __typename?: 'Mutation' }
+  & { changeCode: (
+    { __typename?: 'Respondent' }
+    & Pick<Respondent, 'id'>
+  ) }
+);
+
 export type CreateRespondentMutationVariables = Exact<{
   lang: Language;
 }>;
@@ -2900,12 +2961,17 @@ export type CurrentUserQuizzesQuery = (
   )> }
 );
 
-export type FeaturedQuizzesQueryVariables = Exact<{ [key: string]: never; }>;
+export type FeaturedQuizzesQueryVariables = Exact<{
+  lang: Language;
+}>;
 
 
 export type FeaturedQuizzesQuery = (
   { __typename?: 'Query' }
   & { featuredQuizzes: Array<(
+    { __typename?: 'Quiz' }
+    & QuizBasicPartsFragment
+  )>, socialQuizzes: Array<(
     { __typename?: 'Quiz' }
     & QuizBasicPartsFragment
   )> }
@@ -2938,6 +3004,10 @@ export type MeRespondentSurveysQuery = (
         & { quiz: (
           { __typename?: 'Quiz' }
           & Pick<Quiz, 'id' | 'logoUrl' | 'slug'>
+          & { title: (
+            { __typename?: 'TextTranslation' }
+            & Pick<TextTranslation, 'pl' | 'en'>
+          ) }
         ) }
       ) }
     )>> }
@@ -3023,6 +3093,17 @@ export type UpdateRespondentMutation = (
     { __typename?: 'Respondent' }
     & Pick<Respondent, 'id'>
   ) }
+);
+
+export type VoteQuizMutationVariables = Exact<{
+  type: QuizVoteType;
+  id: Scalars['String'];
+}>;
+
+
+export type VoteQuizMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'voteQuiz'>
 );
 
 export type PoliticiansResultsQueryVariables = Exact<{
@@ -3166,6 +3247,9 @@ export type ResultsQuizFragment = (
         { __typename?: 'Party' }
         & Pick<Party, 'id'>
       )>> }
+    ), votes: (
+      { __typename?: 'QuizVotes' }
+      & Pick<QuizVotes, 'value'>
     ) }
   ) }
 );
@@ -3767,6 +3851,9 @@ export const ResultsQuizFragmentDoc = gql`
         id
       }
     }
+    votes {
+      value
+    }
   }
 }
     `;
@@ -4056,6 +4143,43 @@ export function useCreateQuizMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateQuizMutationHookResult = ReturnType<typeof useCreateQuizMutation>;
 export type CreateQuizMutationResult = Apollo.MutationResult<CreateQuizMutation>;
 export type CreateQuizMutationOptions = Apollo.BaseMutationOptions<CreateQuizMutation, CreateQuizMutationVariables>;
+export const EditorQuizIdeologiesDocument = gql`
+    query EditorQuizIdeologies($slug: String!) {
+  quiz(slug: $slug) {
+    currentVersion {
+      ideologies {
+        ...EditorIdeologyParts
+      }
+    }
+  }
+}
+    ${EditorIdeologyPartsFragmentDoc}`;
+
+/**
+ * __useEditorQuizIdeologiesQuery__
+ *
+ * To run a query within a React component, call `useEditorQuizIdeologiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditorQuizIdeologiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditorQuizIdeologiesQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useEditorQuizIdeologiesQuery(baseOptions: Apollo.QueryHookOptions<EditorQuizIdeologiesQuery, EditorQuizIdeologiesQueryVariables>) {
+        return Apollo.useQuery<EditorQuizIdeologiesQuery, EditorQuizIdeologiesQueryVariables>(EditorQuizIdeologiesDocument, baseOptions);
+      }
+export function useEditorQuizIdeologiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EditorQuizIdeologiesQuery, EditorQuizIdeologiesQueryVariables>) {
+          return Apollo.useLazyQuery<EditorQuizIdeologiesQuery, EditorQuizIdeologiesQueryVariables>(EditorQuizIdeologiesDocument, baseOptions);
+        }
+export type EditorQuizIdeologiesQueryHookResult = ReturnType<typeof useEditorQuizIdeologiesQuery>;
+export type EditorQuizIdeologiesLazyQueryHookResult = ReturnType<typeof useEditorQuizIdeologiesLazyQuery>;
+export type EditorQuizIdeologiesQueryResult = Apollo.QueryResult<EditorQuizIdeologiesQuery, EditorQuizIdeologiesQueryVariables>;
 export const EditorQuizDocument = gql`
     query EditorQuiz($slug: String!) {
   quiz(slug: $slug) {
@@ -4137,6 +4261,42 @@ export function useEditorQuizLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type EditorQuizQueryHookResult = ReturnType<typeof useEditorQuizQuery>;
 export type EditorQuizLazyQueryHookResult = ReturnType<typeof useEditorQuizLazyQuery>;
 export type EditorQuizQueryResult = Apollo.QueryResult<EditorQuizQuery, EditorQuizQueryVariables>;
+export const EditorStandardPartiesDocument = gql`
+    query EditorStandardParties {
+  quiz(slug: "mypolitics") {
+    currentVersion {
+      parties {
+        ...EditorPartyParts
+      }
+    }
+  }
+}
+    ${EditorPartyPartsFragmentDoc}`;
+
+/**
+ * __useEditorStandardPartiesQuery__
+ *
+ * To run a query within a React component, call `useEditorStandardPartiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditorStandardPartiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditorStandardPartiesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useEditorStandardPartiesQuery(baseOptions?: Apollo.QueryHookOptions<EditorStandardPartiesQuery, EditorStandardPartiesQueryVariables>) {
+        return Apollo.useQuery<EditorStandardPartiesQuery, EditorStandardPartiesQueryVariables>(EditorStandardPartiesDocument, baseOptions);
+      }
+export function useEditorStandardPartiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EditorStandardPartiesQuery, EditorStandardPartiesQueryVariables>) {
+          return Apollo.useLazyQuery<EditorStandardPartiesQuery, EditorStandardPartiesQueryVariables>(EditorStandardPartiesDocument, baseOptions);
+        }
+export type EditorStandardPartiesQueryHookResult = ReturnType<typeof useEditorStandardPartiesQuery>;
+export type EditorStandardPartiesLazyQueryHookResult = ReturnType<typeof useEditorStandardPartiesLazyQuery>;
+export type EditorStandardPartiesQueryResult = Apollo.QueryResult<EditorStandardPartiesQuery, EditorStandardPartiesQueryVariables>;
 export const RequestQuizVerifyDocument = gql`
     mutation RequestQuizVerify($quizVersion: String!, $recaptcha: String!) {
   requestQuizVerify(quizVersion: $quizVersion, recaptcha: $recaptcha)
@@ -4540,6 +4700,38 @@ export function usePostsByFilterLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type PostsByFilterQueryHookResult = ReturnType<typeof usePostsByFilterQuery>;
 export type PostsByFilterLazyQueryHookResult = ReturnType<typeof usePostsByFilterLazyQuery>;
 export type PostsByFilterQueryResult = Apollo.QueryResult<PostsByFilterQuery, PostsByFilterQueryVariables>;
+export const ChangeCodeDocument = gql`
+    mutation ChangeCode($code: [String!]!) {
+  changeCode(code: $code) {
+    id
+  }
+}
+    `;
+export type ChangeCodeMutationFn = Apollo.MutationFunction<ChangeCodeMutation, ChangeCodeMutationVariables>;
+
+/**
+ * __useChangeCodeMutation__
+ *
+ * To run a mutation, you first call `useChangeCodeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangeCodeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changeCodeMutation, { data, loading, error }] = useChangeCodeMutation({
+ *   variables: {
+ *      code: // value for 'code'
+ *   },
+ * });
+ */
+export function useChangeCodeMutation(baseOptions?: Apollo.MutationHookOptions<ChangeCodeMutation, ChangeCodeMutationVariables>) {
+        return Apollo.useMutation<ChangeCodeMutation, ChangeCodeMutationVariables>(ChangeCodeDocument, baseOptions);
+      }
+export type ChangeCodeMutationHookResult = ReturnType<typeof useChangeCodeMutation>;
+export type ChangeCodeMutationResult = Apollo.MutationResult<ChangeCodeMutation>;
+export type ChangeCodeMutationOptions = Apollo.BaseMutationOptions<ChangeCodeMutation, ChangeCodeMutationVariables>;
 export const CreateRespondentDocument = gql`
     mutation CreateRespondent($lang: Language!) {
   createRespondent(createRespondentInput: {lang: $lang}) {
@@ -4606,8 +4798,11 @@ export type CurrentUserQuizzesQueryHookResult = ReturnType<typeof useCurrentUser
 export type CurrentUserQuizzesLazyQueryHookResult = ReturnType<typeof useCurrentUserQuizzesLazyQuery>;
 export type CurrentUserQuizzesQueryResult = Apollo.QueryResult<CurrentUserQuizzesQuery, CurrentUserQuizzesQueryVariables>;
 export const FeaturedQuizzesDocument = gql`
-    query FeaturedQuizzes {
+    query FeaturedQuizzes($lang: Language!) {
   featuredQuizzes {
+    ...QuizBasicParts
+  }
+  socialQuizzes(lang: $lang) {
     ...QuizBasicParts
   }
 }
@@ -4625,10 +4820,11 @@ export const FeaturedQuizzesDocument = gql`
  * @example
  * const { data, loading, error } = useFeaturedQuizzesQuery({
  *   variables: {
+ *      lang: // value for 'lang'
  *   },
  * });
  */
-export function useFeaturedQuizzesQuery(baseOptions?: Apollo.QueryHookOptions<FeaturedQuizzesQuery, FeaturedQuizzesQueryVariables>) {
+export function useFeaturedQuizzesQuery(baseOptions: Apollo.QueryHookOptions<FeaturedQuizzesQuery, FeaturedQuizzesQueryVariables>) {
         return Apollo.useQuery<FeaturedQuizzesQuery, FeaturedQuizzesQueryVariables>(FeaturedQuizzesDocument, baseOptions);
       }
 export function useFeaturedQuizzesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FeaturedQuizzesQuery, FeaturedQuizzesQueryVariables>) {
@@ -4683,6 +4879,10 @@ export const MeRespondentSurveysDocument = gql`
           id
           logoUrl
           slug
+          title {
+            pl
+            en
+          }
         }
       }
     }
@@ -4813,6 +5013,37 @@ export function useUpdateRespondentMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdateRespondentMutationHookResult = ReturnType<typeof useUpdateRespondentMutation>;
 export type UpdateRespondentMutationResult = Apollo.MutationResult<UpdateRespondentMutation>;
 export type UpdateRespondentMutationOptions = Apollo.BaseMutationOptions<UpdateRespondentMutation, UpdateRespondentMutationVariables>;
+export const VoteQuizDocument = gql`
+    mutation VoteQuiz($type: QuizVoteType!, $id: String!) {
+  voteQuiz(type: $type, id: $id)
+}
+    `;
+export type VoteQuizMutationFn = Apollo.MutationFunction<VoteQuizMutation, VoteQuizMutationVariables>;
+
+/**
+ * __useVoteQuizMutation__
+ *
+ * To run a mutation, you first call `useVoteQuizMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVoteQuizMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [voteQuizMutation, { data, loading, error }] = useVoteQuizMutation({
+ *   variables: {
+ *      type: // value for 'type'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useVoteQuizMutation(baseOptions?: Apollo.MutationHookOptions<VoteQuizMutation, VoteQuizMutationVariables>) {
+        return Apollo.useMutation<VoteQuizMutation, VoteQuizMutationVariables>(VoteQuizDocument, baseOptions);
+      }
+export type VoteQuizMutationHookResult = ReturnType<typeof useVoteQuizMutation>;
+export type VoteQuizMutationResult = Apollo.MutationResult<VoteQuizMutation>;
+export type VoteQuizMutationOptions = Apollo.BaseMutationOptions<VoteQuizMutation, VoteQuizMutationVariables>;
 export const PoliticiansResultsDocument = gql`
     query PoliticiansResults($quizSlug: String, $category: ENUM_POLITICIANRESULTS_CATEGORY) {
   politicianResultsConnection(

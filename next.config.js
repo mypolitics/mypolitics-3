@@ -75,15 +75,14 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination:
-          process.env.NODE_ENV !== "production"
-            ? "http://localhost:5000/:path*"
-            : "https://api-v3.mypolitics.pl/:path*",
-      },
-    ];
+    return process.env.NODE_ENV !== "production"
+      ? [
+          {
+            source: "/api/:path*",
+            destination: "http://localhost:5000/:path*",
+          },
+        ]
+      : [];
   },
   productionBrowserSourceMaps: true,
   env: {

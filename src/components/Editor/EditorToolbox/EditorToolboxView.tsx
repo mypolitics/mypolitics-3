@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationTriangle,
@@ -7,6 +7,7 @@ import {
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { UseEditor } from "@components/Editor/utils/useEditor";
 import GoogleAd from "@shared/GoogleAd";
+import useTranslation from "next-translate/useTranslation";
 import PartyItem from "./PartyItem";
 import IdeologyItem from "./IdeologyItem";
 import {
@@ -29,28 +30,45 @@ interface Props {
 }
 
 const EditorToolboxView: React.FC<Props> = ({ editor }) => {
+  const { t } = useTranslation("editor");
   const { versionInput } = editor;
   const { parties, traits } = versionInput;
   const ideologies = versionInput.ideologies.filter(
     (id) => !traits.includes(id)
   );
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      ref.current.style.height = "";
+      ref.current.style.minHeight = "";
+    });
+
+    observer.observe(ref.current, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <Container>
         <Inner>
           <Header>
             <Title>
               <FontAwesomeIcon icon={faToolbox} />
-              <span>Przybornik</span>
+              <span>{t("toolbox.title")}</span>
             </Title>
             <HeaderInfo>
               <FontAwesomeIcon icon={faExclamationTriangle} />
-              <span>Podnieś i upuść w odpowiednie pole</span>
+              <span>{t("toolbox.cta")}</span>
             </HeaderInfo>
           </Header>
           <ListContainer>
-            <ListTitle>Partie</ListTitle>
+            <ListTitle>{t("toolbox.section.parties")}</ListTitle>
             <ListDivider />
             <ListInner>
               {parties.map((id) => (
@@ -59,7 +77,7 @@ const EditorToolboxView: React.FC<Props> = ({ editor }) => {
             </ListInner>
           </ListContainer>
           <ListContainer>
-            <ListTitle>Ideologie</ListTitle>
+            <ListTitle>{t("toolbox.section.ideologies")}</ListTitle>
             <ListDivider />
             <ListInner>
               {ideologies.map((id) => (
@@ -68,7 +86,7 @@ const EditorToolboxView: React.FC<Props> = ({ editor }) => {
             </ListInner>
           </ListContainer>
           <ListContainer>
-            <ListTitle>Cechy</ListTitle>
+            <ListTitle>{t("toolbox.section.traits")}</ListTitle>
             <ListDivider />
             <ListInner>
               {traits.map((id) => (

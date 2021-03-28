@@ -1,5 +1,8 @@
-query FeaturedQuizzes {
+query FeaturedQuizzes($lang: Language!) {
     featuredQuizzes {
+        ...QuizBasicParts
+    }
+    socialQuizzes(lang: $lang) {
         ...QuizBasicParts
     }
 }

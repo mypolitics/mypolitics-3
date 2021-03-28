@@ -5,7 +5,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { paths } from "@constants";
 import { useQuizFeatures } from "@components/Quiz/utils/useQuizFeatures";
-import { faEye, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import VerifyState from "@components/Quiz/QuizLink/VerifyState";
@@ -14,13 +14,16 @@ import {
   Chip,
   Container,
   FeaturesList,
+  Header,
   Image,
   Info,
   PointsChip,
   Title,
+  TypeTitle,
 } from "./QuizLinkStyle";
+import { translate } from '@utils/translation';
 
-library.add(faPen, faEye);
+library.add(faPen, faEye, faUsers);
 
 interface Props {
   quiz: QuizBasicPartsFragment;
@@ -28,17 +31,19 @@ interface Props {
   editable?: boolean;
   showState?: boolean;
   canVerify?: boolean;
+  showType?: boolean;
 }
 
 const QuizLink: React.FC<Props> = ({
   quiz,
+  showType = false,
   featured = false,
   editable = false,
   canVerify = false,
   showState = false,
 }) => {
   const { slug, meta, type, verifyRequest } = quiz;
-  const { lang } = useTranslation();
+  const { t, lang } = useTranslation("quiz");
   const quizFeatures = useQuizFeatures(meta.features);
   const showPoints = ![QuizType.Official, QuizType.Classic].includes(type);
   const points = quiz.meta.votes.value;
@@ -52,26 +57,34 @@ const QuizLink: React.FC<Props> = ({
   const [buttonIcon, buttonText] = R.cond([
     [
       () => editable,
-      R.always([<FontAwesomeIcon key="0" icon={faPen} />, "Edytuj"]),
+      R.always([<FontAwesomeIcon key="0" icon={faPen} />, t("link.edit")]),
     ],
     [
       () => canVerify,
-      R.always([<FontAwesomeIcon key="0" icon={faEye} />, "Zobacz"]),
+      R.always([<FontAwesomeIcon key="0" icon={faEye} />, t("link.view")]),
     ],
-    [R.T, R.always([undefined, "Rozpocznij"])],
+    [R.T, R.always([undefined, t("link.begin")])],
   ])();
 
   return (
     <Container featured={featured}>
       <Info>
-        <Link href={path}>
-          <a>
-            {quiz.logoUrl && (
-              <Image src={quiz.logoUrl} alt={quiz.title[lang]} />
-            )}
-            {!quiz.logoUrl && <Title>{quiz.title[lang]}</Title>}
-          </a>
-        </Link>
+        <Header>
+          <Link href={path}>
+            <a>
+              {quiz.logoUrl && (
+                <Image src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
+              )}
+              {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
+            </a>
+          </Link>
+          {quiz.type === QuizType.Community && showType && (
+            <TypeTitle>
+              <FontAwesomeIcon icon={faUsers} />
+              <span>{t("link.social")}</span>
+            </TypeTitle>
+          )}
+        </Header>
         <FeaturesList>
           {showPoints && (
             <PointsChip points={points}>

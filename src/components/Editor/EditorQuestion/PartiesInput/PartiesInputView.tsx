@@ -1,25 +1,27 @@
 import React from "react";
 import { AnswerEffect } from "@components/Results";
 import { SurveyAnswerType } from "@generated/graphql";
-import { itemTypes } from "@constants";
+import { ItemType } from "@constants";
 import { PartyItem } from "@components/Editor";
+import useTranslation from "next-translate/useTranslation";
 import useQuestionEffectsDrop from "../utils/useQuestionEffectsDrop";
-import useQuestion, { UseQuestion } from "../utils/useQuestion";
-import { Info } from "../EditorQuestionStyle";
+import { UseQuestion } from "../utils/useQuestion";
+import { EditorIconsDropArea } from "@components/Editor/EditorDropArea";
 
 interface Props {
   question: UseQuestion;
 }
 
 const PartiesInput: React.FC<Props> = ({ question }) => {
+  const { t } = useTranslation("editor");
   const { data, handleChange } = question;
-  const args = { question, item: itemTypes.party };
-  const { ref: agreeRef } = useQuestionEffectsDrop({
+  const args = { question, item: ItemType.Party };
+  const { handleDrop: handleAgreeDrop } = useQuestionEffectsDrop({
     type: "agree",
     ...args,
   });
 
-  const { ref: disagreeRef } = useQuestionEffectsDrop({
+  const { handleDrop: handleDisagreeDrop } = useQuestionEffectsDrop({
     type: "disagree",
     ...args,
   });
@@ -37,32 +39,48 @@ const PartiesInput: React.FC<Props> = ({ question }) => {
 
   return (
     <>
-      <div ref={agreeRef}>
-        <AnswerEffect title="Partie za" type={SurveyAnswerType.Agree}>
+      <AnswerEffect
+        title={t("question.partiesFor")}
+        type={SurveyAnswerType.Agree}
+      >
+        <EditorIconsDropArea
+          accept={ItemType.Party}
+          dropText={t("question.dropHereParty")}
+          clickText={t("question.clickHereParty")}
+          onDropOrAdd={handleAgreeDrop}
+          padding={0.5}
+        >
           {agreeParties.map(({ id }) => (
             <PartyItem
               onClick={() => handleRemove(id, "agree")}
-              title="Kliknij, aby usunąć"
+              title={t("question.clickToDelete")}
               key={id}
               id={id}
             />
           ))}
-          {agreeParties.length === 0 && <Info>Upuść tutaj partię</Info>}
-        </AnswerEffect>
-      </div>
-      <div ref={disagreeRef}>
-        <AnswerEffect title="Partie przeciw" type={SurveyAnswerType.Disagree}>
+        </EditorIconsDropArea>
+      </AnswerEffect>
+      <AnswerEffect
+        title={t("question.partiesAgainst")}
+        type={SurveyAnswerType.Disagree}
+      >
+        <EditorIconsDropArea
+          accept={ItemType.Party}
+          dropText={t("question.dropHereParty")}
+          clickText={t("question.clickHereParty")}
+          onDropOrAdd={handleDisagreeDrop}
+          padding={0.5}
+        >
           {disagreeParties.map(({ id }) => (
             <PartyItem
               onClick={() => handleRemove(id, "disagree")}
-              title="Kliknij, aby usunąć"
+              title={t("question.clickToDelete")}
               key={id}
               id={id}
             />
           ))}
-          {disagreeParties.length === 0 && <Info>Upuść tutaj partię</Info>}
-        </AnswerEffect>
-      </div>
+        </EditorIconsDropArea>
+      </AnswerEffect>
     </>
   );
 };

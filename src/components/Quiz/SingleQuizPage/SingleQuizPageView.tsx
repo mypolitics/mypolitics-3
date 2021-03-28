@@ -8,6 +8,7 @@ import {
 } from "@generated/graphql";
 import {
   faChartBar,
+  faComment,
   faHistory,
   faLandmark,
   faStar,
@@ -22,8 +23,9 @@ import { useHandleErrors } from "@utils/hooks/useHandleErrors";
 import { useRouter } from "next/router";
 import { paths } from "@constants";
 import { LicenseLinks } from "@components/Quiz/SingleQuizPage/SingleQuizPageUtils";
-import { PoliticiansResults } from "@components/Quiz";
+import { PoliticiansResults, Vote } from "@components/Quiz";
 import SurveysHistory from "@components/Survey/SurveysHistory";
+import DisqusComments from "@shared/Comments";
 import Box from "./SingleQuizPageBox";
 import {
   ButtonWrapper,
@@ -41,6 +43,7 @@ import {
   Title,
   AuthorHeader,
 } from "./SingleQuizPageStyle";
+import { translate } from '@utils/translation';
 
 interface Props {
   quiz: SingleQuizQuery["quiz"];
@@ -55,8 +58,9 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
   const handleErrors = useHandleErrors();
   const [createSurvey, { loading }] = useCreateSurveyMutation();
   const quizFeatures = useQuizFeatures(meta.features);
-  const { lang } = useTranslation();
+  const { t, lang } = useTranslation("quiz");
   const isClassic = quiz.type === QuizType.Classic;
+  const isCommunity = quiz.type === QuizType.Community;
 
   const handleStartClick = async () => {
     try {
@@ -79,26 +83,30 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
       <GoogleAd id="myp3-standard-top" />
       <Container>
         <Header>
-          {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={quiz.title[lang]} />}
-          {!quiz.logoUrl && <Title>{quiz.title[lang]}</Title>}
+          {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />}
+          {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
           {!isClassic && (
             <Button onClick={handleStartClick} loading={loading} showShadow>
-              Rozpocznij
+              {t("link.begin")}
             </Button>
           )}
         </Header>
-        {quiz.type === QuizType.Community && (
+        {isCommunity && (
           <AuthorHeader>
-            Quiz społecznościowy<span>{authors[0].name}</span>
+            {t("single.social")}
+            <span>{authors[0].name}</span>
           </AuthorHeader>
         )}
         <Inner>
+          {isCommunity && (
+            <Vote quizId={quiz.id} value={quiz.meta.votes.value} />
+          )}
           <Box>
-            <Description>{description[lang]}</Description>
+            <Description>{translate(description, lang)}</Description>
           </Box>
           <Box
             header={{
-              title: "Funkcje",
+              title: t("single.functions"),
               icon: <FontAwesomeIcon icon={faStar} />,
             }}
           >
@@ -110,20 +118,20 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
           </Box>
           <Box
             header={{
-              title: "Statystyki",
+              title: t("single.stats"),
               icon: <FontAwesomeIcon icon={faChartBar} />,
             }}
           >
             <div>
               <Chips>
                 {meta.statistics.surveysNumber.toLocaleString()}&nbsp;
-                <span>testów</span>
+                <span>{t("single.tests")}</span>
               </Chips>
             </div>
           </Box>
           <Box
             header={{
-              title: "Wyniki znanych osób",
+              title: t("single.famous"),
               icon: <FontAwesomeIcon icon={faLandmark} />,
             }}
           >
@@ -133,7 +141,7 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
           </Box>
           <Box
             header={{
-              title: "Historia wyników",
+              title: t("quizzes.history"),
               icon: <FontAwesomeIcon icon={faHistory} />,
             }}
           >
@@ -145,24 +153,34 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
             <MetaWrapper>
               {meta.authors.length > 0 && (
                 <Chips>
-                  <span>Twórca:</span>&nbsp;
+                  <span>{t("single.author")}</span>&nbsp;
                   {meta.authors[0].name}
                 </Chips>
               )}
               {meta.license !== QuizLicense.Commercial && (
                 <Link href={LicenseLinks[meta.license]} passHref>
                   <Chips as="a" target="_blank">
-                    <span>Licencja:</span>&nbsp;
+                    <span>{t("single.license")}</span>&nbsp;
                     {meta.license}
                   </Chips>
                 </Link>
               )}
             </MetaWrapper>
           </Box>
+          {isCommunity && (
+            <Box
+              header={{
+                title: t("single.comments"),
+                icon: <FontAwesomeIcon icon={faComment} />,
+              }}
+            >
+              <DisqusComments quiz={quiz} />
+            </Box>
+          )}
           {!isClassic && (
             <ButtonWrapper>
               <Button loading={loading} onClick={handleStartClick} showShadow>
-                Rozpocznij
+                {t("link.begin")}
               </Button>
             </ButtonWrapper>
           )}

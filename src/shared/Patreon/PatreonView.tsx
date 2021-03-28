@@ -1,6 +1,5 @@
 import React from "react";
 import { Patreons } from "@generated/graphql";
-import dayjs from "dayjs";
 import Button from "@shared/Button";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -12,7 +11,7 @@ import {
   Header,
   Logo,
   Inner,
-  Date,
+  Date as HeaderDate,
   HeaderText,
   ListWrapper,
   ButtonWrapper,
@@ -26,8 +25,8 @@ interface Props {
 }
 
 const Patreon: React.FC<Props> = ({ patreons }) => {
+  const { t } = useTranslation("common");
   const { updatedAt, list } = patreons;
-
   const { lang } = useTranslation();
 
   return (
@@ -39,18 +38,16 @@ const Patreon: React.FC<Props> = ({ patreons }) => {
               ? require("@assets/images/patronite-full.png")
               : require("@assets/images/patreon-full.png")
           }
-          alt={lang === "pl" ? "Patronite" : "Patreon"}
+          alt={t("patreon.title")}
         />
-        {/* TODO: Translate and change Patronite -> Patreon */}
-        <HeaderText>
-          Nie mamy powiązania z żadną opcją wpływu i nikt nas nie finansuje.
-          Możesz wesprzeć nasze działania poprzez Patronite
-        </HeaderText>
+        <HeaderText>{t("patreon.description")}</HeaderText>
       </Header>
       <Inner>
-        <Title>Patroni myPolitics</Title>
+        <Title>{t("patreon.list.title")}</Title>
         <ListWrapper dangerouslySetInnerHTML={{ __html: list }} />
-        <Date>Stan na dzień&nbsp;{dayjs(updatedAt).format("DD.MM.YYYY")}</Date>
+        <HeaderDate>
+          {t("patreon.list.updatedAt")}&nbsp;{new Date(updatedAt).toLocaleDateString()}
+        </HeaderDate>
       </Inner>
       <ButtonWrapper>
         <Link
@@ -66,7 +63,7 @@ const Patreon: React.FC<Props> = ({ patreons }) => {
             beforeIcon={<FontAwesomeIcon icon={faSeedling} />}
             pulsating
           >
-            Zostań Patronem!
+            {t("patreon.button")}
           </Button>
         </Link>
       </ButtonWrapper>

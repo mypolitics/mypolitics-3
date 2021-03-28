@@ -5,6 +5,9 @@ import Button from "@shared/Button";
 import * as R from "ramda";
 import InformationButton from "@shared/InformationButton";
 import { useCurrentResults } from "@components/Results";
+import CountrySelect from "@shared/CountrySelect";
+import useTranslation from "next-translate/useTranslation";
+import { langToCountry } from "@utils/langToCountry";
 import {
   Container,
   List,
@@ -12,9 +15,6 @@ import {
   HeaderTitle,
   ButtonWrapper,
 } from "./ResultsPartyStyle";
-import CountrySelect from "@shared/CountrySelect";
-import useTranslation from "next-translate/useTranslation";
-import { langToCountry } from "@utils/langToCountry";
 
 interface Props {
   parties: ResultsPartyPartsFragment[];
@@ -24,8 +24,13 @@ interface Props {
 const ResultsParty: React.FC<Props> = ({ parties, authorizedPartiesIds }) => {
   const [showMore, setShowMore] = useState<boolean>(false);
   const { isClassic } = useCurrentResults();
-  const { lang } = useTranslation();
-  const [country, setCountry] = useState(langToCountry(lang));
+  const { t, lang } = useTranslation("results");
+  const byCountry = R.groupBy(R.prop("country"));
+  const countriesList = R.keys(byCountry(parties));
+  const langCountry = langToCountry(lang);
+  const [country, setCountry] = useState(
+    countriesList.includes(langCountry) ? langCountry : countriesList[0]
+  );
   const maxParties = isClassic ? 1 : 2;
   const partiesList = parties
     .filter((p) => p.country === country)
@@ -47,33 +52,30 @@ const ResultsParty: React.FC<Props> = ({ parties, authorizedPartiesIds }) => {
   };
 
   const information = (
-    <InformationButton title="Jak działa dopasowanie partii?">
-      <div>
-        Procent oznacza ważoną kategoriami pytań zgodność odpowiedzi użytkownika
-        ze stanowiskami partii.
-      </div>
-      <div>
-        Pod wynikami, w sekcji "Analiza odpowiedzi", możesz sprawdzić z czym
-        konkretnie się zgadzasz (bądź nie) z daną opcją.
-      </div>
+    <InformationButton title={t("party.title")}>
+      <div>{t("party.desc1")}</div>
+      <div>{t("party.desc2")}</div>
     </InformationButton>
   );
 
   return (
     <Container>
       <Header>
-        <HeaderTitle>Partia</HeaderTitle>
+        <HeaderTitle>{t("party.header")}</HeaderTitle>
         {!isClassic && information}
-        <CountrySelect
-          value={country}
-          onChange={handleCountryChange}
-          color="background"
-        />
+        {countriesList.length > 1 && (
+          <CountrySelect
+            value={country}
+            onChange={handleCountryChange}
+            color="background"
+            list={countriesList}
+          />
+        )}
       </Header>
       <List>{partiesInfoList}</List>
       {!showMore && (
         <ButtonWrapper>
-          <Button onClick={handleShowMore}>Pokaż więcej</Button>
+          <Button onClick={handleShowMore}>{t("answers.showMore")}</Button>
         </ButtonWrapper>
       )}
     </Container>

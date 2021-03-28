@@ -1,15 +1,16 @@
 import styled, { css } from "styled-components";
 import { mix, transparentize } from "polished";
+import EditorDropArea from "@components/Editor/EditorDropArea";
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   width: 100%;
   border-radius: 0.5rem;
   overflow: hidden;
 `;
 
-export const Info = styled.div`
+export const Info = styled.button`
+  border: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,9 +19,11 @@ export const Info = styled.div`
   text-align: center;
   border-radius: 0.25rem;
   padding: 0.75rem;
+  width: 50%;
 `;
 
 export const IdeologyContainer = styled.div<{ color: string }>`
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,11 +41,17 @@ export const IdeologyContainer = styled.div<{ color: string }>`
   }
 `;
 
+export const IdeologyDropArea = styled(EditorDropArea)`
+  width: 50%;
+`;
+
 export const IdeologyName = styled.div`
   color: ${({ theme }) => theme.colors.backgroundLighten};
   font-weight: ${({ theme }) => theme.fontWeight.secondary.bold};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin: 0 0.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 export const IdeologyDeleteButton = styled.button`

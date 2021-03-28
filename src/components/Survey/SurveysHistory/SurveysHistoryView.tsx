@@ -6,10 +6,11 @@ import Button from "@shared/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import dayjs from "dayjs";
 import { SurveyLink } from "@components/Survey";
 import Link from "next/link";
 import { paths } from "@constants";
+import { Title } from "@components/Quiz/QuizLink/QuizLinkStyle";
+import useTranslation from "next-translate/useTranslation";
 import { useClassicResults } from "./SurveyHistoryUtils";
 import {
   Container,
@@ -18,6 +19,7 @@ import {
   Logo,
   EmptyWrapper,
 } from "./SurveysHistoryStyle";
+import { translate } from '@utils/translation';
 
 library.add(faArrowDown);
 
@@ -30,6 +32,7 @@ const SurveyHistoryElement: React.FC<SurveyHistoryElementProps> = ({
   data,
   contentOnly,
 }) => {
+  const { t, lang } = useTranslation("quiz");
   const { quiz, surveys } = data;
   const BASE_LIMIT = 3;
   const [limit, setLimit] = useState<number>(BASE_LIMIT);
@@ -41,7 +44,7 @@ const SurveyHistoryElement: React.FC<SurveyHistoryElementProps> = ({
   );
 
   const sortedSurveys = surveys.sort(
-    (a, b) => dayjs(b.updatedAt).unix() - dayjs(a.updatedAt).unix()
+    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
   );
   const limitedSurveys = sortedSurveys.filter((_, i) => i < limit);
   const listElements = R.map(toListElement, limitedSurveys);
@@ -56,7 +59,7 @@ const SurveyHistoryElement: React.FC<SurveyHistoryElementProps> = ({
           onClick={handleShowMore}
           beforeIcon={<FontAwesomeIcon icon={faArrowDown} />}
         >
-          Pokaż więcej
+          {t("surveyHistory.showMore")}
         </Button>
       )}
     </>
@@ -64,7 +67,7 @@ const SurveyHistoryElement: React.FC<SurveyHistoryElementProps> = ({
 
   const empty = listElements.length === 0;
   const content = empty ? (
-    <EmptyWrapper>Historia jest pusta. Wykonaj quiz!</EmptyWrapper>
+    <EmptyWrapper>{t("surveyHistory.emptyInfo")}</EmptyWrapper>
   ) : (
     baseContent
   );
@@ -78,7 +81,15 @@ const SurveyHistoryElement: React.FC<SurveyHistoryElementProps> = ({
       <Header>
         <Link href={path}>
           <a>
-            <Logo src={quiz.logoUrl} alt={quiz.id} />
+            {quiz.logoUrl && (
+              <Logo
+                src={quiz.logoUrl}
+                alt={quiz.title ? translate(quiz.title, lang) : quiz.slug}
+              />
+            )}
+            {!quiz.logoUrl && (
+              <Title>{quiz.title ? translate(quiz.title, lang) : quiz.slug}</Title>
+            )}
           </a>
         </Link>
       </Header>
@@ -93,6 +104,7 @@ interface Props {
 }
 
 const SurveysHistory: React.FC<Props> = ({ quizSlug, onlyContent = false }) => {
+  const { t } = useTranslation("quiz");
   const { data } = useMeRespondentSurveysQuery();
   const classicResults = useClassicResults();
 
@@ -127,7 +139,7 @@ const SurveysHistory: React.FC<Props> = ({ quizSlug, onlyContent = false }) => {
 
   const empty = quizzesSurveysElements.length === 0;
   const content = empty ? (
-    <EmptyWrapper>Historia jest pusta. Wykonaj quiz!</EmptyWrapper>
+    <EmptyWrapper>{t("surveyHistory.emptyInfo")}</EmptyWrapper>
   ) : (
     quizzesSurveysElements
   );

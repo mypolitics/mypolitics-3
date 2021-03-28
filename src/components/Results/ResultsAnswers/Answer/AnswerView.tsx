@@ -24,6 +24,7 @@ import {
   SubHeader,
 } from "./AnswerStyle";
 import { useAnswerEffects } from "./AnwerUtils";
+import { translate } from '@utils/translation';
 
 library.add(faThumbsUp, faThumbsDown);
 
@@ -55,12 +56,14 @@ const Answer: React.FC<Props> = ({ data, num, party }) => {
       <Header>
         <HeaderInfo>
           <Number>#{num}</Number>
-          <Question>{question.text[lang]}</Question>
+          <Question>{translate(question.text, lang)}</Question>
         </HeaderInfo>
         <HeaderActions>
           {!isNeutral && party && !partyNeutral && (
             <Chip variant={partyAgree ? "agree" : "disagree"}>
-              {partyAgree ? "Zgoda z" : "Niezgoda z"}
+              {partyAgree
+                ? t("results:answers.agree")
+                : t("results:answers.disagree")}
               <img src={party.logoUrl} alt={party.name} />
             </Chip>
           )}
@@ -87,13 +90,13 @@ const Answer: React.FC<Props> = ({ data, num, party }) => {
             {ideologies.hasAny && (
               <>
                 <AnswerEffect
-                  title="Ideologie za"
+                  title={t("results:answers.ideYes")}
                   type={SurveyAnswerType.Agree}
                 >
                   {ideologies.agree}
                 </AnswerEffect>
                 <AnswerEffect
-                  title="Ideologie przeciw"
+                  title={t("results:answers.ideNo")}
                   type={SurveyAnswerType.Disagree}
                 >
                   {ideologies.disagree}
@@ -102,11 +105,14 @@ const Answer: React.FC<Props> = ({ data, num, party }) => {
             )}
             {parties.hasAny && (
               <>
-                <AnswerEffect title="Partie za" type={SurveyAnswerType.Agree}>
+                <AnswerEffect
+                  title={t("results:answers.parYes")}
+                  type={SurveyAnswerType.Agree}
+                >
                   {parties.agree}
                 </AnswerEffect>
                 <AnswerEffect
-                  title="Partie przeciw"
+                  title={t("results:answers.parNo")}
                   type={SurveyAnswerType.Disagree}
                 >
                   {parties.disagree}
