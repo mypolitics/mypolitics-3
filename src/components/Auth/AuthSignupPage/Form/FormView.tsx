@@ -74,8 +74,7 @@ const FormView: React.FC = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
-          required
-          isInvalid={formik.touched.name && formik.errors.name}
+          isInvalid={!!(formik.touched.name && formik.errors.name)}
         />
         {formik.touched.name && formik.errors.name && (
           <Alert type="error">{formik.errors.name}</Alert>
@@ -90,7 +89,7 @@ const FormView: React.FC = () => {
           value={formik.values.email}
           placeholder="john.doe@mypolitics.pl"
           required
-          isInvalid={formik.touched.email && formik.errors.email}
+          isInvalid={!!(formik.touched.email && formik.errors.email)}
         />
         {formik.touched.email && formik.errors.email && (
           <Alert type="error">{formik.errors.email}</Alert>
@@ -104,7 +103,7 @@ const FormView: React.FC = () => {
           onBlur={formik.handleBlur}
           value={formik.values.repeatEmail}
           required
-          isInvalid={formik.touched.repeatEmail && formik.errors.repeatEmail}
+          isInvalid={!!(formik.touched.repeatEmail && formik.errors.repeatEmail)}
         />
         {formik.touched.repeatEmail && formik.errors.repeatEmail && (
           <Alert type="error">{formik.errors.repeatEmail}</Alert>
@@ -118,7 +117,7 @@ const FormView: React.FC = () => {
           onBlur={formik.handleBlur}
           value={formik.values.password}
           required
-          isInvalid={formik.touched.password && formik.errors.password}
+          isInvalid={!!(formik.touched.password && formik.errors.password)}
         />
         {formik.touched.password && formik.errors.password && (
           <Alert type="error">{formik.errors.password}</Alert>
