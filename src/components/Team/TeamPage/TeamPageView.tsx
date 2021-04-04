@@ -18,6 +18,7 @@ interface Props {
 
 const TeamPage: React.FC<Props> = ({ departments }) => {
   const { t } = useTranslation("common");
+
   return (
     <Container>
       <Title>{t("team.title")}</Title>
