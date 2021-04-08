@@ -14,7 +14,7 @@
     "readingTime": {
       "one": "Procenjeno vreme čitanja: jedan minut",
       "few": "Procenjeno vreme čitanja: {{count}} minuta",
-      "many": ""
+      "many": "Procenjeno vreme čitanja: {{count}} minuta"
     }
   },
   "view": {
@@ -22,7 +22,7 @@
     "lead": "upoznajte stavove suprotne strane"
   },
   "contact": {
-    "title": "Želiš doprineti sa sopstvenim tekstom? Pošalji ga nama!"
+    "title": "<0><1>Želiš doprineti sa sopstvenim tekstom?</1>Pošalji ga nama!</0>"
   },
   "checkMore": {
     "title": "Pogledaj ostale unose"
