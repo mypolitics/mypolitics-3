@@ -1,4 +1,8 @@
 {
+  "SEO": {
+    "title": "Politički test {{title}}",
+    "description": "Testiraj svoje političke stavove u izbornom kvizu {{title}}! {{description}}"
+  },
   "ideologies": {
     "e84642622ce79db59c79b101650cd342": "Staljinizam",
     "5d7ed94a1045ee03d113d6ff8ac0fd21": "Štraserizam",
