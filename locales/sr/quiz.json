@@ -150,7 +150,7 @@
       "resetConfirm": "Resetuj",
       "main": {
         "hover": "Klikni da otkažeš",
-        "notHover": "Izaberi stepen / Izaberi do kog stepena/obima / Do kog stepena?"
+        "notHover": "Do kog stepena?"
       },
       "answer": {
         "neutral": "Ne znam",
