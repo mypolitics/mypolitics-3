@@ -3,6 +3,23 @@
     "title": "myPolitics - test političkih stavova",
     "description": "Test i politički kompas koji prikazuju Vaše stavove: 7 osa, najbliža stranka i ideologija. Ukucajte i probajte!"
   },
+   "404": {
+    "SEO": {
+      "title": "Error 404"
+    },
+    "title": "Stranica nije pronađena",
+    "returnButton": "Vrati se na početnu stranicu"
+  },
+  "500": {
+    "SEO": {
+      "title": "Došlo je do greške"
+    },
+    "title": {
+      "withCode": "Došlo je do greške {{statusCode}}",
+      "default": "Došlo je do nepoznate greške"
+    },
+    "description": "Pokušaj da osvežiš stranicu. Ako to ne pomogne - javi nam"
+  },
   "contact": {
     "email": "biuro@mypolitics.pl",
     "title": "Imaš pitanja? Obrati nam se."
@@ -30,18 +47,19 @@
     "copied": "Kopirano"
   },
   "errorMessages": [
-    "Fajl nije pronađen",
-    "Neovlašćeno",
-    "Zaglavlje ispitanika nije pronađeno",
-    "Test je završen",
-    "Test još nije završen",
-    "Ova verzija je već objavljena",
-    "Pogrešni detalji za prijavu",
-    "Korisnik/korisničko ime već postoji",
-    "Verifikacioni imejl je ponovo poslat na tvoju imejl adresu",
-    "Korisnik ne postoji",
-    "Već si glasao",
-    "Verifikacioni imejl je već poslat. Pokušaj ponovo za 15 minuta."
+    "0": "Fajl nije pronađen",
+    "1": "Neovlašćeno",
+    "2": "Zaglavlje ispitanika nije pronađeno",
+    "3": "Test je završen",
+    "4": "Test još nije završen",
+    "5": "Ova verzija je već objavljena",
+    "6": "Pogrešni detalji za prijavu",
+    "7": "Korisnik/korisničko ime već postoji",
+    "8": "Verifikacioni imejl je ponovo poslat na tvoju imejl adresu",
+    "9": "Korisnik ne postoji",
+    "10": "Već si glasao",
+    "11": "Verifikacioni imejl je već poslat. Pokušaj ponovo za 15 minuta.",
+    "default": "Nepoznata greška"
   ],
   "talkType": {
     "classic": "Debate omladinskih organizacija",
