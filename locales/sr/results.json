@@ -1,5 +1,35 @@
 {
+   "SEO": {
+    "title": "Proveri svoje političke stavove u {{title}}!",
+    "description": "Savremena platforma za političke kvizove. {{description}}"
+  },
+  "SEO_politician": {
+    "title": "{{name}} - rezultati u kvizu {{title}}!",
+    "description": "Uporedi svoje stavove! {{biography}}"
+  },
+  "answers": {
+    "analyze": "Analiziraj svoje odgovore",
+    "compare": "Uporedi sa strankom",
+    "show": "Prikaži",
+    "showMore": "Prikaži više",
+    "agree": "Složio si se sa",
+    "disagree": "Nisi se složio sa",
+    "ideYes": "Ideologije za",
+    "ideNo": "Ideologije protiv",
+    "parYes": "Stranke za",
+    "parNo": "Stranke protiv"
+  },
+  "content": {
+    "checkOut": "Proveri moje političke stavove u"
+  },
+  "description": {
+    "title": "Šta moji rezultati znače?",
+    "axes": "Ideološke ose definišu tvoje stavove u određenim prostorima koje predstavljaju dve suprostavljene ideje. Klikni na ikonicu da saznaš za šta se one zalažu.",
+    "compass": "Političkim kompasom se predstavlja tvoja pozicija na dvoosnom ili troosnom političkom prostoru. Lokacija na svakoj osi grafikona odgovara vrednostima ideoloških osa."
+  },
   "header": {
+    "finished": "Završeno",
+    "id": "ID",
     "social": "Kviz zajednice"
   },
   "ideology": {
