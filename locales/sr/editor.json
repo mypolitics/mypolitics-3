@@ -96,6 +96,10 @@
       "traits": "Osobine"
     }
   },
+  "misc": {
+    "clickToConfirmAction": "Klikni ponovo za potvrdu",
+    "unsavedChangesWarning": "Imaš nesačuvane promene. Želiš li stvarno da izađeš sa stranice?"
+  },
   "admin": {
     "title": "Panel za moderaciju",
     "section": {
@@ -103,6 +107,9 @@
     }
   },
   "footer": {
+    "saveButton": "Sačuvaj",
+    "autoSaved": "Sačuvano automatski",
+    "manuallySaved": "Sačuvano",
     "urlTitle": "Link do kviza",
     "urlToast": "Kopirano",
     "testBeforeVerify": "Test pre verifikacije",
