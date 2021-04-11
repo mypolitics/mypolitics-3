@@ -1,0 +1,163 @@
+ {
+   "ideologies": {
+      "e84642622ce79db59c79b101650cd342": "Stalinisme",
+      "5d7ed94a1045ee03d113d6ff8ac0fd21": "Strasserisme",
+      "d205a81b8749ba9815224f30d4378380": "Fascisme",
+      "7ac22d90e079d52413de4bf313abb5a8": "Franquisme",
+      "e81131795dbcd0e9aa2df7cad0469dbd": "Capitalisme autoritaire",
+      "f78793d37d2f256c190a4f2b5f5ef72e": "Socialisme",
+      "bbdae02075351dfcfef18f82fe76ac4b": "Étatisme",
+      "f06c01c4e2b54c391dc24c478557ce9d": "Traditionalisme",
+      "c96cb0f5a6aef182513caf03b320c0ed": "Conservatisme",
+      "aeb2f0fe859d3d840a4eef1e15c1f5b4": "Paléolibertarianisme",
+      "8dac303a993812f4115549b61ace48b8": "Centrisme",
+      "2776bcfeeeadaae581c2283dea68516f": "Libéralisme conservatif",
+      "71506c04f97f716e2d8b6537eb3bb93b": "Social-démocratie",
+      "d2d1c8ba3fd291fb122cd3315b848ea9": "Nouvelle gauche",
+      "7115a02b1eaff53a8ddfe3d11a070034": "Socialisme démocratique",
+      "9042e3760f1dd9e27dd7a32d3ab05399": "Anarcho-communisme",
+      "18ddec23a18de5352780b95eebd814fa": "Social-libéralisme",
+      "37e56f7a2b1b9ddfe5c9963c9d61fc37": "Syndicalisme",
+      "0e9c1fda905589e201751d712e8bc147": "Agorisme",
+      "72f8fe391101c447cc467ee2dcdcd9e8": "Libéralisme",
+      "652cbd1d722c2fcd8e06aa34f8aa22fe": "Libértarianisme",
+      "6410ff914a95dfcb1359e16f005b8abc": "Anarcho-capitalisme",
+      "default": "Pas d'idéologie",
+      "select": "Selectionner dans la liste"
+   },
+   "features": {
+      "compass": "Boussole",
+      "parties": "Partis",
+      "questionsNumber": {
+         "one": "question",
+         "few": "questions",
+         "other": "questions"
+      },
+      "axesNumber": {
+         "one": "axe",
+         "few": "axes",
+         "other": "axes"
+      },
+      "politiciansResults": "Politiciens",
+      "traits": "Traits"
+   },
+   "axesIdeologyGrades": {
+      "center": "Centre",
+      "moderate": "Modéré",
+      "hard": "Fort",
+      "radical": "Radical"
+   },
+   "compass": {
+      "left": "Gauche",
+      "center": "Centre",
+      "right": "Droite"
+   },
+   "answers": {
+      "NEUTRAL": "Pas de réponse",
+      "AGREE": "D'accord",
+      "DISAGREE": "Pas d'accord"
+   },
+   "weight": [
+      null,
+      "Un peu",
+      "Tout à fait"
+   ],
+   "politicianCategory": {
+      "politician": "Politique",
+      "youth": "Organisations de jeunesse",
+      "commentator": "Autres"
+   },
+   "init": {
+      "basic": "Commençeons!",
+      "lead": "Est-ce que vous faites un test des opinions politiques pour la première fois?",
+      "yes": "Oui",
+      "no": "Non",
+      "simplified": "Simplifié",
+      "advancedVariant": "Avancée",
+      "advanced": "Bienvenue, vétéran!",
+      "top": "Nous vous demandons l'idéologie la plus proche et la place sur la boussole à deux axes. Cela nous permettra d'améliorer l'application.",
+      "skip": "Sauter",
+      "save": "Sauvegarder des données"
+   },
+   "preInit": {
+      "before": "Avant le quiz",
+      "hey": "Salut!",
+      "beforeWeStart": "Avant d'avancer aux quiz ...",
+      "top": "Votre confidentialité est notre priorité. Ici, nous avons simplement décrit comment et à quelles fins nous maintenons vos données.",
+      "privacy": "Vos résultats sont <0>anonymes</0> et ne peuvent pas retracés à vous (à moins quand vous les rendiez publics vous-même)",
+      "data": "Les données sont analysées collectivement pour améliorer la précision de l'application",
+      "next": "Avancer"
+   },
+   "link": {
+      "edit": "Éditer",
+      "view": "Afficher",
+      "begin": "Commencer",
+      "social": "Communautaire",
+      "published": "Publié",
+      "denied": "Refusé",
+      "inVerification": "En vérification",
+      "reason1": "Raison du refus",
+      "reason2": "Raison"
+   },
+   "results": {
+      "showMore": "Voir plus",
+      "none": "Pas des résults",
+      "famous": "Résults des personnages connus"
+   },
+   "respondent": {
+      "title": "Code de la personne répondante",
+      "privacy": "Nous protégeons votre confidentialité, nous ne maintenons aucun lien entre vous et vos opinions politiques. Ce code unique vous permet de lire l'historique de vos résultats sur d'autres appareils.",
+      "change": "Changer",
+      "header": "Changement de code de la personne répondant",
+      "confirm": "Confirmer"
+   },
+   "vote": {
+      "votes": "Votes:",
+      "rate": "Évaluer le quiz"
+   },
+   "quizzes": {
+      "other": "Voir les autres quiz",
+      "history": "Historique des résultats"
+   },
+   "single": {
+      "social": "Quiz communautaire",
+      "functions": "Fonctions",
+      "stats": "Statistiques",
+      "tests": "de tests",
+      "famous": "Résultats des personnages connus",
+      "author": "Auteur:",
+      "license": "License:",
+      "comments": "Commentaires"
+   },
+   "surveyHistory": {
+      "title": "Historique des résultats",
+      "showMore": "Afficher en suite",
+      "emptyInfo": "L'historique est vide. Faire un quiz!",
+      "type": {
+         "finished": "Terminé",
+         "notFinishedYet": "Pendant"
+      }
+   },
+   "survey": {
+      "bottomInfo": "Vous pouvez faire une pause à tout moment, votre progression est sauvegardée.",
+      "question": "Question",
+      "actions": {
+         "previousQuestion": "Question précédente",
+         "reset": "Recommencer",
+         "resetConfirm": "Réinitialiser",
+         "main": {
+            "hover": "Cliquer pour annuler",
+            "notHover": "Selectionner une sorte"
+         },
+         "answer": {
+            "neutral": "Je ne sais pas",
+            "agree": "D'accord",
+            "disagree": "Pas d'accord"
+         },
+         "weight": [
+             "1": "Un peu",
+             "2": "Tout à fait"
+         ]
+      }
+   }
+}
