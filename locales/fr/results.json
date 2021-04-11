@@ -1,0 +1,48 @@
+ {
+   "answers": {
+      "analyze": "Analyse des résults",
+      "compare": "Comparer aven un parti",
+      "show": "Afficher",
+      "showMore": "Afficher en suite",
+      "agree": "D'accord avec",
+      "disagree": "Pas d'accord avec",
+      "ideYes": "Idéologies pour",
+      "ideNo": "Idéologies contre",
+      "parYes": "Partis pour",
+      "parNo": "Partis contre"
+   },
+   "content": {
+      "checkOut": "Découvrez mes opinions politiques dans"
+   },
+   "description": {
+      "title": "Qu'est-ce que mon résults veut dire?",
+      "axes": "Les axes idéologiques définissent les vues dans leurs sphères respectives, montrant le soutien de l'utilisateur aux idées opposées. Cliquez sur une icône pour découvrir ce que cela veut dire.",
+      "compass": "La boussole politique montre graphiquement la position de l'utilisateur dans un espace politique à deux ou trois axes. La position sur chaque axe du graphique correspond aux valeurs dans les axes idéologiques."
+   },
+   "header": {
+      "finished": "Terminé",
+      "id": "ID:",
+      "social": "Quiz de la communauté"
+   },
+   "ideology": {
+      "title": "Comment fonctionne la correspondance d'idéologie?",
+      "desc1": "Dans la version Alpha, la correspondance idéologique est basée tout à fait sur la position sur la boussole.",
+      "desc2": "testtesttestestsetrs"
+   },
+   "party": {
+      "title": "Comment fonctionne la correspondance des partis?",
+      "desc1": "La pourcentage représente la compatibilité des réponses d'utilisateur avec les opinions d'un parti.",
+      "desc2": "Sous les résultats, dans la section \"Analyse des réponses\", vous pouvez vérifier ce que vous êtes spécifiquement d'accord (ou pas d'accord) avec une option donnée.",
+      "header": "Parti",
+      "agreement": "Compatibilité de la réponses",
+      "authorized": "Le pictogramme bleu informe qu'un représentant désigné de parti {{name}} a autorisé ses réponses au test.",
+      "percentage": "La pourcentage représente la compatibilité des réponses d'utilisateur avec les opinions d'un parti.",
+      "auth": "Réponse autorisée"
+   },
+   "trait": {
+      "title": "Comment fonctionnent les traites?",
+      "desc1": "Les traites sont les opinions individuelles qui ne peuvent pas montrées sur les axes.",
+      "desc2": "Elles sont attribués quand l'utilisateur répond d'une manière définitive à la série de questions et réponses correspondant à certain traite",
+      "header": "Traits"
+   }
+}
