@@ -1,0 +1,40 @@
+ {
+   "hero": {
+      "title": "<0>Nous créons un société <1>politiquement conscient</1></0>",
+      "subTitle": "Nous vulgarisons l'esprit civique et éduquons à la politique les gens de tout le monde.",
+      "quizLink": "Test des opinions politiques",
+      "learnMore": "En savoir plus",
+      "candidate": "Candidate"
+   },
+   "quiz": {
+      "title": "Test des opinions politiques",
+      "slogan": "le plus avancé",
+      "content": {
+         "text": "Nous avons créé un test des opinions politiques, qui a déjà été utilisé par près d'un demi-million de Polonaises et de Polonaises, ainsi que par de nombreuses personnages politiques connus. Sur la base de plusieurs dizaines de réponses, il attribue les opinions, parti le plus proche ou à la position sur la boussole politique.",
+         "buttonText": "Régarder votres opinions!"
+      }
+   },
+   "news": {
+      "title": "Actualités et opinions",
+      "slogan": "journalisme",
+      "content": {
+         "text": "Nous avons toujours pensé que la fiabilité et l'objectivité du journalisme ne devaient pas être un rêve. C'est pourquoi nous avons créé myPolitics News, informant sans manipulations des actualités les plus importantes du pays et du monde. Partout où nous voyons le besoin d'un point de vue idéologique, myPolitics View entre en jeu, aidant à comprendre les opinions de tout la scène politique.",
+         "buttonText": "Afficher la suite"
+      }
+   },
+   "talk": {
+      "title": "Débats et entretiens politiques",
+      "slogan": "le plus interessant",
+      "content": {
+         "text": "Nous vulgarisons l'activisme politique en organisant des débats et des entretiens avec des organisations de jeunesse et adultes de toutes les options politiques. Chaque mois, nos émissions sont régardées par centaines de milliers de spectateurs polonais.",
+         "buttonText": "Voir plus"
+      }
+   },
+   "partners": {
+      "title": "Collaboration?",
+      "lead": "Nous sommes ouverts!",
+      "content": {
+         "title": "Nos partenaires"
+      }
+   }
+}
