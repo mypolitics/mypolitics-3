@@ -1,0 +1,91 @@
+ {
+   "SEO": {
+      "title": "myPolitics – test des opinions politiques",
+      "description": "Le test et la boussole politique montrant vos opinions politiques – 7 axes, le plus proche parti politique et la idéologie. Entrez et vérifiez!"
+   },
+   "contact": {
+      "email": "biuro@mypolitics.pl",
+      "title": "<0><1>Avez-vous des questions?</1>Contactez-nous!</0>"
+   },
+   "documents": {
+      "rules": "Réglement",
+      "privacy": "Politique de confidentialité",
+      "gdpr": "Traitement des données"
+   },
+   "footer": {
+      "rules": "Règlement",
+      "privacy": "Confidentialité",
+      "gdpr": "Vos données"
+   },
+   "header": {
+      "articles": "Articles",
+      "talks": "Débats",
+      "quiz": "Tests politiques",
+      "history": "Historique",
+      "creator": "Menu du créateur",
+      "quizMod": "Modération"
+   },
+   "share": {
+      "share": "Partager",
+      "copied": "Copiée dans le press-papier"
+   },
+   "errorMessages": [
+      "0": "Une ressource n'a pas été trouvée",
+      "1": "Non autorisé",
+      "2": "douzupełnienia",
+      "3": "Le questionnaire a déjà terminé",
+      "4": "Le questionnaire n'a pas déjà terminé",
+      "5": "La version a déjà été publiée",
+      "6": "Fausses informations de connexion",
+      "7": "Un compte utilisateur de ce nom existe déjà",
+      "8": "Email de vérification a été encore envoyée.",
+      "9": "Cet identifiant existe déjà.",
+      "10": "Vous avez déjà voté",
+      "11": "Email de vérification a déjà été envoyée. Réessayez dans 15 minutes."
+   ],
+   "talkType": {
+      "classic": "Les débats groupements de jeunesse",
+      "mvsp": "La jeunesse contre les politiciens",
+      "interview": "Entretien",
+      "expert": "L'avis de l'expert",
+      "ring": "Ring politique"
+   },
+   "country": {
+      "POLAND": "Pologne",
+      "ENGLAND": "Royaume-Uni",
+      "UNITED_STATES": "États-Unis"
+   },
+   "groupAd": {
+      "button": "Joindre!"
+   },
+   "patreon": {
+      "title": "Patronite",
+      "description": "Nous n'avons pas d'affiliation avec aucune option politique et personne ne nous finance. Vous pouvez soutenir nos activités via Patronite",
+      "list": {
+         "title": "Les patrons de myPolitics",
+         "updatedAt": "Au:"
+      },
+      "button": "Devenir un Patron!"
+   },
+   "editorCta": {
+      "button": "Panneau du créateur",
+      "title": [
+         "Mauvais quiz?",
+         "Créer un mieux avec notre éditeur!"
+      ]
+   },
+   "standardPage": {
+      "section": {
+         "quizzes": {
+            "title": "Tests des opinions politiques",
+            "button": "Voir plus"
+         }
+      }
+   },
+   "uploadInput": {
+      "button": "Selectionner le fichier"
+   },
+   "userInfo": {
+      "login": "Connecter"
+   }
+}
