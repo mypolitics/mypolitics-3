@@ -1,0 +1,35 @@
+{
+   "SEO": {
+      "title": "Actualités et opinions | myPolitics",
+      "description": "Vous ne raterez jamais aucune information!"
+   },
+   "hero": {
+      "title": "Actualités et opinions"
+   },
+   "news": {
+      "title": "Actualités",
+      "lead": "vous ne raterez aucune information"
+   },
+   "header": {
+      "readingTime": {
+         "one": "une minute de lecture",
+         "few": "minutes de lecture",
+         "many": "minutes de lecture"
+      }
+   },
+   "view": {
+      "title": "Opinions",
+      "lead": "Voir point de vue de l'autre côté"
+   },
+   "contact": {
+      "title": "<0><1>Voulez-vous publier votre article?</1> Envoyez-le nous!</0>"
+   },
+   "checkMore": {
+      "title": "Afficher les autres entrées"
+   },
+   "share": {
+      "title": "Avez-vous aimé?",
+      "facebook": "Partager sur Facebook",
+      "twitter": "Partager sur Twitter"
+   }
+}
