@@ -1,0 +1,56 @@
+ {
+  "SEO": {
+    "title": "Ver as minhas opiniões políticas {{title}}!",
+    "description": "Uma plataforma de questionários políticos moderna"
+  },
+  "SEO_politician": {
+    "title": "{{name}} - resultados no questionário {{title}}!",
+    "description": "Compara as tuas opiniões! {{biography}}"
+  },
+   "answers": {
+      "analyze": "Analise as suas respostas",
+      "compare": "Compare com um partido",
+      "show": "Mostrar",
+      "showMore": "Mostrar mais",
+      "agree": "Concordou com",
+      "disagree": "Discordou com",
+      "ideYes": "Ideologias a favor",
+      "ideNo": "Ideologias contra",
+      "parYes": "Partidos a favor",
+      "parNo": "Partidos contra"
+   },
+   "content": {
+      "checkOut": "Verificar as minhas opiniões políticas em"
+   },
+   "description": {
+      "title": "Mas o que significam os meus resultados???",
+      "axes": "Os eixos ideológicos definem as tuas opiniões em esferas particulares, contrastando duas ideias opostas. Carrega no ícone para aprenderes o que representa.",
+      "compass": "A bússola política retrata a tua localização numa esfera política de dois ou três eixos. A localização de cada eixo do gráfico corresponde aos valores nos eixos ideológicos. "
+   },
+   "header": {
+      "finished": "Finalizado",
+      "id": "Identificação",
+      "social": "Questionário da Comunidade"
+   },
+   "ideology": {
+      "title": "Como funciona a correspondência ideológica?",
+      "desc1": "Na versão alfa do teste, a correspondência ideológica é baseada exclusivamente na localização na bússola.",
+      "desc2": "Baseado no mapa de ideologias previamente preparado, o algoritmo classifica a ideologia mais próxima da tua localização."
+   },
+   "party": {
+      "title": "Como funciona a correspondência de partidos?",
+      "desc1": "A percentagem retrata a compatibilidade entre as respostas dadas pelo respondente e os partidos",
+      "desc2": "Podes verificar em que questões concordas com um dado partido na secção de Análise em baixo",
+      "header": "Partido",
+      "agreement": "Compatibilidade de respostas",
+      "authorized": "O carimbo azul marca respostas autorizadas por um representante do partido",
+      "percentage": "A percentagem retrata a compatibilidade entre as respostas do respondente e as do partido",
+      "auth": "Resposta autorizada"
+   },
+   "trait": {
+      "title": "Como funcionam as características?",
+      "desc1": "As características são opiniões individuais do respondente que não podem ser representadas nos eixos",
+      "desc2": "É atribuida quando o respondente responde 'fortemente' a todas as questões associadas com a característica.",
+      "header": "Características"
+   }
+}
