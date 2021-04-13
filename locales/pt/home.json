@@ -1,0 +1,40 @@
+ {
+   "hero": {
+      "title": "Gradimo politički svesno društvo",
+      "subTitle": "Promovišemo građanski stav i edukujemo ljude širom sveta",
+      "quizLink": "Test političkih stavova",
+      "learnMore": "Saznaj više",
+      "candidate": "Kandidat"
+   },
+   "quiz": {
+      "title": "Test političkih stavova",
+      "slogan": "najnaprednije",
+      "content": {
+         "text": "Napravili smo test političkih stavova koga je koristilo skoro pola miliona ljudi i mnoge poznate političke figure. Na osnovu tvojih odgovora, test te svrstava u najbližu ideologiju, političku stranku i poziciju na političkom kompasu.",
+         "buttonText": "Proveri svoje političke stavove"
+      }
+   },
+   "news": {
+      "title": "Novisti i mišljenja",
+      "slogan": "Novinarstvo",
+      "content": {
+         "text": "U svetu gde novinarstvo postaje sve više partijsko, napravili smo myPolitics News koji podržava principe objektivnosti. U međuvremenu, preko myPolitics View, promovišemo ideološki zasnovan pristup kako bi povećali razumevanje stavova iz čitavog političkog spektra.",
+         "buttonText": "Pogledaj više"
+      }
+   },
+   "talk": {
+      "title": "Debate i politički intervjui",
+      "slogan": "Najzanimljivije",
+      "content": {
+         "text": "Promovišemo politički aktivizam organizovanjem debata i intervjua sa omladinskim organizacijama i političarima iz čitavog političkog spektra.",
+         "buttonText": "Pogledaj više"
+      }
+   },
+   "partners": {
+      "title": "Da li bi želeo da radiš sa nama? / Partnerstvo?",
+      "lead": "Otvoreni smo za partnerstvo! / Tražimo partnere",
+      "content": {
+         "title": "Naši partneri"
+      }
+   }
+}
