@@ -1,0 +1,180 @@
+ {
+   "SEO": {
+      "title": "Editor do questionário",
+      "description": "Cria o teu próprio questionário político"
+   },
+   "header": {
+      "title": "Editor do questionário"
+   },
+   "basic": {
+      "title": "Informação básica",
+      "input": {
+         "title": "Título",
+         "description": "Descrição",
+         "logo": "Logótipo"
+      }
+   },
+   "parties": {
+      "title": "Partidos políticos",
+      "create": "Criar partido",
+      "import": "Importar partido",
+      "form": {
+         "logo": "Logótipo",
+         "country": "Estado",
+         "name": "Nome"
+      },
+      "createModal": {
+         "title": "Criar partido",
+         "button": "Criar/definir"
+      },
+      "editModal": {
+         "title": "Editar o partido",
+         "button": "Guardar"
+      }
+   },
+   "ideologies": {
+      "title": "Ideologias",
+      "create": "Criar ideologia",
+      "import": "Importar ideologia",
+      "importFromOther": "De outro teste",
+      "form": {
+         "icon": "Ícone/símbolo",
+         "name": "Nome",
+         "color": "Cor",
+         "description": "Descrição"
+      },
+      "createModal": {
+         "title": "Criar ideologia",
+         "button": "Criar"
+      },
+      "editModal": {
+         "title": "Editar ideologia",
+         "button": "Guardar"
+      },
+      "importModal": {
+         "title": "importar ideologia",
+         "url": "Link para o questionário",
+         "button": "importar"
+      }
+   },
+   "axes": {
+      "title": "Eixos",
+      "deleteButton": "Eliminar eixo",
+      "createButton": "Criar eixo"
+   },
+   "traits": {
+      "title": "Características",
+      "description": [
+         "Características são as opiniões separadas do respondente que não podem ser retatados nos eixos",
+         "É atribuida quando o respondente responde \"fortemente\" a todas as questões associadas com a característica."
+      ],
+      "dropHere": "Largar ideologia aqui",
+      "clickToDelete": "Clica para eliminar",
+      "dropHereIdeology": "largar ideologia aqui",
+      "clickHereIdeology": "Clica para escolher uma ideologia"
+   },
+   "question": {
+      "title": "Questões",
+      "deleteButton": "Adicionar questão",
+      "partiesFor": "Partidos a favor",
+      "partiesAgainst": "Partidos contra",
+      "ideologiesFor": "Ideologias a favor",
+      "ideologiesAgainst": "Ideologias contra",
+      "dropHereParty": "Largar partido aqui",
+      "clickHereParty": "Clica para escolher um partido",
+      "dropHereIdeology": "Largar uma ideologia aqui",
+      "clickHereIdeology": "Clica para escolher uma ideologia",
+      "createNew": "Criar uma questão",
+      "clickToDelete": "Clica para eliminar"
+   },
+   "toolbox": {
+      "title": "Ferramentas",
+      "cta": "Agarra e larga numa caixa correta",
+      "section": {
+         "parties": "Partidos",
+         "ideologies": "Ideologias",
+         "traits": "Características"
+      }
+   },
+   "misc": {
+    "clickToConfirmAction": "Clica outra vez para confirmar",
+    "unsavedChangesWarning": "Tens mudanças não guardadas. Queres mesmo sair desta página?"
+  },
+   "admin": {
+      "title": "Painel de moderação",
+      "section": {
+         "verifyRequests": "Questionários para verificação"
+      }
+   },
+   "footer": {
+      "saveButton": "Guardar",
+      "autoSaved": "Guardado automaticamente",
+      "manuallySaved": "Guardado",
+      "urlTitle": "Link para o questionário",
+      "urlToast": "Copiado",
+      "testBeforeVerify": "Testar antes da verificação",
+      "verifyRequest": "Submeter para verificação",
+      "verifyToast": "O teu teste foi submetido com sucesso. Consulta o painel do editor por atualizações.",
+      "requirements": {
+         "title": "Cumpre os requerimentos seguintes para submeter o teu questionário",
+         "list": {
+            "titleAndDescription": "Título e descrição",
+            "minQuestions": "Mínimo de {} questões",
+            "minIdeologiesOrParties": "Mínimo de {} ideologias/partidos",
+            "allQuestionsHaveEffects": "Cada questão tem um efeito a sí atribuido"
+         }
+      }
+   },
+   "adminFooter": {
+      "title": "Verificar",
+      "discard": "Rejeitar",
+      "accept": "Aceitar",
+      "discardModal": {
+         "title": "Razão para rejeitar",
+         "input": {
+            "label": "Razão de rejeitar",
+            "placeholder": "Palavras inapropriadas"
+         },
+         "button": "Rejeitar questionário"
+      }
+   },
+   "panel": {
+      "title": "Painel do criador",
+      "section": {
+         "quizzes": {
+            "title": "Os teus questionários",
+            "createButton": "Criar novo questionário"
+         }
+      },
+      "defaultQuizValues": {
+         "title": "O meu novo questionário",
+         "description": "Espaço para uma descrição fixe"
+      }
+   },
+   "verifyRequested": {
+      "title": "Submetido para verificação",
+      "section": {
+         "url": {
+            "title": "Link privado para o teu questonário",
+            "description": "Através deste link, o teste pode ser",
+            "urlToast": "Copiado"
+         },
+         "meaning": {
+            "title": "O que significa iso?",
+            "description": "Assim que verificado, o teu questionário vai ser juntado aos outros questionários de criadores e aparecer na página inicial :)"
+         },
+         "edit": {
+            "title": "Posso editar o meu questionário?",
+            "description": "Claro! Mas tens que o submeter outra vez para verificação"
+         },
+         "vote": {
+            "title": "O que posso fazer para o meu questionário ser aceite mais rapidamente?",
+            "description": "O quão rapidamento o teu questionário é verificado depende do número de votos que o teu questionário tem. Envia o link para os teus amigos e pede um voto."
+         }
+      },
+      "footer": {
+         "returnButton": "De volta a editar",
+         "panelButton": "Painel do criador"
+      }
+   }
+}
