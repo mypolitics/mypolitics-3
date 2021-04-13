@@ -1,0 +1,166 @@
+ { 
+ "SEO": {
+    "title": "Teste político {{title}}",
+    "description": "Testa as tuas opiniões políticas num questionário de eleições {{title}}! {{description}}"
+  },
+   "ideologies": {
+      "e84642622ce79db59c79b101650cd342": "Estalinismo",
+      "5d7ed94a1045ee03d113d6ff8ac0fd21": "Strasserismo",
+      "d205a81b8749ba9815224f30d4378380": "Fascismo",
+      "7ac22d90e079d52413de4bf313abb5a8": "Francoismo",
+      "e81131795dbcd0e9aa2df7cad0469dbd": "Pinochetismo",
+      "f78793d37d2f256c190a4f2b5f5ef72e": "Socialismo",
+      "bbdae02075351dfcfef18f82fe76ac4b": "Estatismo",
+      "f06c01c4e2b54c391dc24c478557ce9d": "Tradicionalismo",
+      "c96cb0f5a6aef182513caf03b320c0ed": "Conservadorismo",
+      "aeb2f0fe859d3d840a4eef1e15c1f5b4": "Paleolibertarismo",
+      "8dac303a993812f4115549b61ace48b8": "Centrismo",
+      "2776bcfeeeadaae581c2283dea68516f": "Liberalismo conservador",
+      "71506c04f97f716e2d8b6537eb3bb93b": "Social-democracia",
+      "d2d1c8ba3fd291fb122cd3315b848ea9": "Nova Esquerda",
+      "7115a02b1eaff53a8ddfe3d11a070034": "Socialismo democrático",
+      "9042e3760f1dd9e27dd7a32d3ab05399": "Anarcocomunismo",
+      "18ddec23a18de5352780b95eebd814fa": "Liberalismo Social",
+      "37e56f7a2b1b9ddfe5c9963c9d61fc37": "Sindicalismo",
+      "0e9c1fda905589e201751d712e8bc147": "Agorismo",
+      "72f8fe391101c447cc467ee2dcdcd9e8": "Liberalismo",
+      "652cbd1d722c2fcd8e06aa34f8aa22fe": "Libertarismo",
+      "6410ff914a95dfcb1359e16f005b8abc": "Anarcocapitalismo",
+      "default": "Sem ideologia",
+      "select": "Escolhe da lista"
+   },
+   "features": {
+      "compass": "Bússola",
+      "parties": "Partidos políticos",
+      "questionsNumber": {
+         "one": "{{count}} questão",
+         "few": "{{count}} questões",
+         "other": "{{count}} questões"
+      },
+      "axesNumber": {
+         "one": "{{count}} eixo",
+         "few": "{{count}} eixos",
+         "other": "{{count}} eixos"
+      },
+      "politiciansResults": "Políticos",
+      "traits": "Características"
+   },
+   "axesIdeologyGrades": {
+      "center": "Centro {{ideology}}",
+      "moderate": "Moderado {{ideology}}",
+      "hard": "Forte {{ideology}}",
+      "radical": "Radical {{ideology}}"
+   },
+   "compass": {
+      "left": "Esquerda",
+      "center": "Centro",
+      "right": "Direita"
+   },
+   "answers": {
+      "NEUTRAL": "Sem resposta",
+      "AGREE": "Concordo",
+      "DISAGREE": "Discordo"
+   },
+   "weight": [
+      "Um pouco",
+      "Fortemente"
+   ],
+   "politicianCategory": {
+      "politician": "Política",
+      "youth": "Organizações juvenís",
+      "commentator": "Outro"
+   },
+   "init": {
+      "basic": "Vamos começar",
+      "lead": "Este é o teu primeiro questionário de opiniões políticas?",
+      "yes": "Sim",
+      "no": "Não",
+      "simplified": "Simplificado",
+      "advancedVariant": "Avançado",
+      "advanced": "Bem-vindo, veterano da bússula política!",
+      "top": "Pedimos-te amavelmente que indiques a ideologia e localização na bússola mais próximas. Ajudar-nos-á a melhorar a aplicação.",
+      "skip": "Saltar",
+      "save": "Guardar a informação"
+   },
+   "preInit": {
+      "before": "Antes do questionário...",
+      "hey": "Hey!",
+      "beforeWeStart": "Antes do questionário...",
+      "top": "A tua privacidade é a nossa prioridade. Aqui está como e porque guardamos a tua informação.",
+      "privacy": "Os teus resultados são anónimos e não podem ser rastreados de volta para ti (a menos que os decidas partilhar)",
+      "data": "A informação é analisada coletivamente para melhorar a precisão da aplicação",
+      "next": "Próximo"
+   },
+   "link": {
+      "edit": "Editar",
+      "view": "Ver",
+      "begin": "Começar",
+      "social": "Comunidade",
+      "published": "Publicado",
+      "denied": "Rejeitado",
+      "inVerification": "Verificação pendente",
+      "reason1": "Razão para rejeição",
+      "reason2": "Razão"
+   },
+   "results": {
+      "showMore": "Mostrar mais",
+      "none": "Sem resultados",
+      "famous": "Resultados de figuras famosas"
+   },
+   "respondent": {
+      "title": "Código de respondente",
+      "privacy": "Protegemos a tua privacidade, não guardamos a ligação entre ti e as tuas opiniões políticas. Este código único permitir-te-á ver a história dos teus resultados em diferentes dispositivos.",
+      "change": "Mudar",
+      "header": "Mudar o teu código de respondente",
+      "confirm": "Confirmar"
+   },
+   "vote": {
+      "votes": "Votos",
+      "rate": "Avaliar questionário"
+   },
+   "quizzes": {
+      "other": "Ver outros questionários",
+      "history": "Histórico de resultados"
+   },
+   "single": {
+      "social": "Questionário de comunidade",
+      "functions": "Funções",
+      "stats": "Estatísticas",
+      "tests": "testes",
+      "famous": "Resultados de figuras famosas",
+      "author": "Criador:",
+      "license": "Licença",
+      "comments": "Comentários"
+   },
+   "surveyHistory": {
+      "title": "Histórico de resultados",
+      "showMore": "Mostrar mais",
+      "emptyInfo": "O teu histórico está vazio. Faz um questionário!",
+      "type": {
+         "finished": "Feito",
+         "notFinishedYet": "Em progresso"
+      }
+   },
+   "survey": {
+      "bottomInfo": "Podes para o teste a qualquer momento, o teu progresso será guardado.",
+      "question": "Questão",
+      "actions": {
+         "previousQuestion": "Questão enterior",
+         "reset": "Começar de novo",
+         "resetConfirm": "Redefinir",
+         "main": {
+            "hover": "Clica para cancelar",
+            "notHover": "A que nível?"
+         },
+         "answer": {
+            "neutral": "Não sei",
+            "agree": "Condordo",
+            "disagree": "Discordo"
+         },
+         "weight": [
+            "0": "Um pouco/parcialmente",
+            "1": "Fortemente"
+         ]
+      }
+   }
+}
