@@ -26,12 +26,19 @@ import { socialLinks, SocialLink as SocialLinkType } from "./FooterUtils";
 const Footer: React.FC = () => {
   const { t, lang } = useTranslation("common");
   const year = new Date().getFullYear();
-  const toSocialLink = ({ url, icon, customColor }: SocialLinkType) => (
-    <SocialLink key={url} href={url} color={customColor} target="_blank">
+  const toSocialLink = ({ url, icon, alt, customColor }: SocialLinkType) => (
+    <SocialLink
+      key={url}
+      href={url}
+      color={customColor}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={alt}
+    >
       {typeof icon === "object" && "iconName" in icon ? (
         <FontAwesomeIcon icon={icon} />
       ) : (
-        <img src={icon} alt={url} />
+        <img src={icon} alt={alt} />
       )}
     </SocialLink>
   );

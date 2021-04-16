@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Container, BackgroundImage, Inner, Overlay } from "./HeroSectionStyle";
 
@@ -7,15 +8,20 @@ interface Props {
   children: React.ReactNode;
 }
 
-const HeroView: React.FC<Props> = ({ children }) => (
-  <Container>
-    <BackgroundImage
-      src={backgroundImage.src}
-      srcSet={backgroundImage.srcSet}
-    />
-    <Overlay as="div" />
-    <Inner>{children}</Inner>
-  </Container>
-);
+const HeroView: React.FC<Props> = ({ children }) => {
+  const { t } = useTranslation("home");
+
+  return (
+    <Container>
+      <BackgroundImage
+        src={backgroundImage.src}
+        srcSet={backgroundImage.srcSet}
+        alt={t("hero.altBackground")}
+      />
+      <Overlay as="div" />
+      <Inner>{children}</Inner>
+    </Container>
+  );
+};
 
 export default HeroView;

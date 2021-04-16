@@ -40,7 +40,9 @@
     "quiz": "Testy poglądów",
     "history": "Historia",
     "creator": "Panel twórcy",
-    "quizMod": "Moderacja"
+    "quizMod": "Moderacja",
+    "altLanguage": "Wybierz język",
+    "altMenuButton": "Menu"
   },
   "share": {
     "share": "Udostępnij",

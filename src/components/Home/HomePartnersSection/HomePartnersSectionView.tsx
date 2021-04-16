@@ -1,6 +1,6 @@
 import React from "react";
 import * as R from "ramda";
-import { ComponentPersonPartner, HomePageQuery } from "@generated/graphql";
+import { HomePageQuery } from "@generated/graphql";
 import { Lead, Title } from "@shared/Typography";
 import useTranslation from "next-translate/useTranslation";
 import {
@@ -42,7 +42,11 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
 
   return (
     <Container>
-      <Image src={backgroundImage.src} srcSet={backgroundImage.srcSet} />
+      <Image
+        src={backgroundImage.src}
+        srcSet={backgroundImage.srcSet}
+        alt={t("hero.altBackground")}
+      />
       <Overlay as="div" />
       <Inner>
         <Header>

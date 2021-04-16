@@ -4,7 +4,8 @@
     "subTitle": "We promote civic attitude and educate people all over the world",
     "quizLink": "Political views quiz",
     "learnMore": "Learn more",
-    "candidate": "Candidate"
+    "candidate": "Candidate",
+    "altBackground": "Background"
   },
   "quiz": {
     "title": "Political views test",
@@ -12,7 +13,8 @@
     "content": {
       "text": "We have created a test of political views that has been used by nearly half a million people, including many famous political figures. Based on your answers, the test matches you with the closest ideology, political party and a location on the political compass. ",
       "buttonText": "Check your political views "
-    }
+    },
+    "altResults": "Results"
   },
   "news": {
     "title": "News and opinions",

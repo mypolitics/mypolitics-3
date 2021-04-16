@@ -28,7 +28,7 @@ export const LanguageImage = styled.a<{ image: string }>`
 export const DropdownButton = styled.button`
   background: transparent;
   border: 0;
-  padding: 0;
+  padding: 0 0 10px 5px;
   margin: 0;
   cursor: pointer;
 

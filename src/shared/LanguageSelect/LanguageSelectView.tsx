@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+import { Language, languages } from "@constants";
 import {
   Wrapper,
   Container,
@@ -13,7 +14,6 @@ import {
   DropdownButton,
   LanguageImage,
 } from "./LanguageSelectStyle";
-import { Language, languages } from "@constants";
 
 library.add(faAngleDown, faAngleUp);
 
@@ -31,7 +31,7 @@ const LanguageSelect: React.FC<Props> = ({
   onChange,
 }) => {
   const router = useRouter();
-  const { lang } = useTranslation();
+  const { t, lang } = useTranslation("common");
   const [showFull, setShowFull] = useState<boolean>(false);
   const toggleShowFull = () => setShowFull(!showFull);
   const currentLang = global ? lang : value;
@@ -89,7 +89,11 @@ const LanguageSelect: React.FC<Props> = ({
     <Wrapper>
       <Container showFull={showFull} color={color}>
         <Inner>{languageButtons}</Inner>
-        <DropdownButton onClick={toggleShowFull} type="button">
+        <DropdownButton
+          onClick={toggleShowFull}
+          type="button"
+          aria-label={t("header.altLanguage")}
+        >
           <FontAwesomeIcon icon={showFull ? faAngleUp : faAngleDown} />
         </DropdownButton>
       </Container>

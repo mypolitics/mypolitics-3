@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
 import breakpoint from "styled-components-breakpoint";
-import breakpoints from "@theme/breakpoints";
-import { Lead as DefaultLead } from "@shared/Typography";
 
 export const Header = styled.header`
   text-align: right;
@@ -72,9 +70,14 @@ export const ContentFill = styled.div`
   `};
 `;
 
-export const Lead = styled(DefaultLead)`
+export const Lead = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
   opacity: 0.5;
+  font-size: 1.5rem;
+  font-weight: ${({ theme }) => theme.fontWeight.primary.light};
+  font-family: ${({ theme }) => theme.fontFamily.primary};
+  line-height: 1.5;
+  margin: 0;
 
   ${breakpoint("md")`
     max-width: 50%;
