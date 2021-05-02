@@ -21,7 +21,8 @@ import {
   MainCopyright,
   TeamContainer,
 } from "./FooterStyle";
-import { socialLinks, SocialLink as SocialLinkType } from "./FooterUtils";
+import {socialLinks, SocialLink as SocialLinkType} from "./FooterUtils";
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   const { t, lang } = useTranslation("common");
@@ -38,7 +39,7 @@ const Footer: React.FC = () => {
       {typeof icon === "object" && "iconName" in icon ? (
         <FontAwesomeIcon icon={icon} />
       ) : (
-        <img src={icon} alt={alt} />
+                  <Image src={icon} alt={alt} width={16} height={16}/>
       )}
     </SocialLink>
   );

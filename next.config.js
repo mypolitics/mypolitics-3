@@ -25,6 +25,12 @@ const nextConfig = {
     webpack5: true,
     strictPostcssConfiguration: true,
   },
+  images: {
+      domains: [
+          'files.mypolitics.pl',
+          'editor.mypolitics.pl'
+      ],
+  },
   async redirects() {
     return [
       {

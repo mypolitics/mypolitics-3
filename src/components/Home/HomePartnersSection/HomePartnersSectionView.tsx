@@ -33,7 +33,9 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
     >
       <PartnerImage
         src={partner.image.formats.thumbnail.url}
-        alt={partner.name}
+              alt={partner.name}
+              width={64}
+              height={64}
       />
     </PartnerLink>
   );
@@ -41,13 +43,14 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
   const partnersLinks = R.map(toPartnerLink, partners);
 
   return (
-    <Container>
-      <Image
+      <Container>
+          <Overlay/>
+                          <Image
         src={backgroundImage.src}
-        srcSet={backgroundImage.srcSet}
         alt={t("hero.altBackground")}
-      />
-      <Overlay as="div" />
+              layout="fill"
+              objectFit="cover"
+          />
       <Inner>
         <Header>
           <Title>{t("partners.title")}</Title>

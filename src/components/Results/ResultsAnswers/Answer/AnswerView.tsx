@@ -24,7 +24,8 @@ import {
   SubHeader,
 } from "./AnswerStyle";
 import { useAnswerEffects } from "./AnwerUtils";
-import { translate } from '@utils/translation';
+import {translate} from '@utils/translation';
+import Image from 'next/image';
 
 library.add(faThumbsUp, faThumbsDown);
 
@@ -64,7 +65,7 @@ const Answer: React.FC<Props> = ({ data, num, party }) => {
               {partyAgree
                 ? t("results:answers.agree")
                 : t("results:answers.disagree")}
-              <img src={party.logoUrl} alt={party.name} />
+                          <Image src={party.logoUrl} alt={party.name} width={16} height={16}/>
             </Chip>
           )}
           {isNeutral && <Chip variant="neutral">{t(`answers.${type}`)}</Chip>}

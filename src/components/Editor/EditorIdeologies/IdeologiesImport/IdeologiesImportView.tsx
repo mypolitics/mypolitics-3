@@ -13,7 +13,8 @@ import InputLabel from "@shared/InputLabel";
 import { Input } from "@shared/Common";
 import { parseUrl } from "@components/Editor/EditorIdeologies/IdeologiesImport/IdeologiesImportUtils";
 import useTranslation from "next-translate/useTranslation";
-import { Container } from "./IdeologiesImportStyle";
+import {Container} from "./IdeologiesImportStyle";
+import Image from 'next/image'
 
 library.add(faPlus);
 
@@ -86,9 +87,11 @@ const IdeologiesImport: React.FC<Props> = ({ editor }) => {
               beforeIcon={<FontAwesomeIcon icon={faPlus} />}
               onClick={() => handleImport("mypolitics")}
             >
-              <img
+              <Image
                 src="https://files.mypolitics.pl/mypolitics2/cdnv2-myplogo_e3e80327aa.png"
-                alt="mypolitics"
+                              alt="mypolitics"
+                                      width={322}
+        height={64}
               />
             </Button>
             <Button

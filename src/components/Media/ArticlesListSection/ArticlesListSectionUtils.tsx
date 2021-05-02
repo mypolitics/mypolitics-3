@@ -1,7 +1,8 @@
 import * as React from "react";
 import useTranslation from "next-translate/useTranslation";
 import { LogoType, useLogo } from "@utils/hooks/useLogo";
-import { ListType } from "./ArticlesListSectionTypes";
+import {ListType} from "./ArticlesListSectionTypes";
+import Image from 'next/image';
 
 interface UseArticlesListHeader {
   title: React.ReactNode;
@@ -31,7 +32,7 @@ export const useArticlesListHeader = (
   const { url, name } = useLogo(logoTypes[type]);
 
   if (isShort) {
-    const title = <img src={url} alt={name} />;
+      const title = <Image src={url} alt={name} width={805} height={129}/>;
 
     return {
       title,

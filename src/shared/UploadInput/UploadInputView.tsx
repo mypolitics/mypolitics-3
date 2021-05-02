@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import useTranslation from "next-translate/useTranslation";
-import { Label, ImageWrapper, ActionButton } from "./UploadInputStyle";
+import {Label, ImageWrapper, ActionButton} from "./UploadInputStyle";
+import Image from 'next/image';
 
 library.add(faImage, faTimes);
 
@@ -43,7 +44,7 @@ const UploadInput: React.FC<Props> = ({ endpoint, value, onChange }) => {
   if (value) {
     return (
       <ImageWrapper as="div" onClick={(e) => e.preventDefault()}>
-        <img src={value} alt={value} />
+            <Image src={value} alt={value} width={24} height={24}/>
         <ActionButton danger onClick={() => onChange(undefined)}>
           <FontAwesomeIcon icon={faTimes} />
         </ActionButton>

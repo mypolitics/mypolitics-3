@@ -22,7 +22,7 @@ const PartyCard: React.FC<Props> = ({ data, editor, showActions = true }) => {
 
   return (
     <Container>
-      <Image src={logoUrl} alt={name} />
+          <Image src={logoUrl} alt={name} width={24} height={24}/>
       <Name>{name}</Name>
       {showActions && editor && (
         <>
