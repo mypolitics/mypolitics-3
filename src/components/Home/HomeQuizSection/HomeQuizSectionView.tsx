@@ -5,7 +5,7 @@ import useTranslation from "next-translate/useTranslation";
 import DefaultLink from "next/dist/client/link";
 import { paths } from "@constants";
 import * as R from "ramda";
-import { AdditionalContentImage } from "./HomeQuizSectionStyle";
+import { AdditionalContentImage, ImageBox } from "./HomeQuizSectionStyle";
 
 const plImg = require("@assets/images/mypolitics-quiz-results-pl.png");
 const intImg = require("@assets/images/mypolitics-quiz-results.png");
@@ -24,8 +24,10 @@ const HomeQuizSection: React.FC = () => {
       slogan={t("quiz.slogan")}
       variant="right"
       illustrationUrl={require("@assets/images/quiz.png")}
-      additionalContent={
-        <AdditionalContentImage src={contentSrc} alt=""/>
+          additionalContent={
+          <ImageBox>
+                  <AdditionalContentImage src={contentSrc} width={900} height={746} alt="" />
+                  </ImageBox>
       }
       content={
         <>

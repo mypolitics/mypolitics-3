@@ -11,7 +11,8 @@ import {
   Illustration,
   SubTitle,
   ButtonsWrapper,
-  Wrapper,
+    Wrapper,
+  IllustrationWrapper
 } from "./HomeHeroStyle";
 
 const HeroView: React.FC = () => {
@@ -43,11 +44,15 @@ const HeroView: React.FC = () => {
               {t("hero.learnMore")}
             </Button>
           </ButtonsWrapper>
-        </Content>
+              </Content>
+              <IllustrationWrapper>
         <Illustration
           src={require("@assets/images/candidate.png")}
-          alt={t("hero.candidate")}
-        />
+                  alt={t("hero.candidate")}
+                  width={740}
+                  height={480}
+                  />
+                  </IllustrationWrapper>
       </HeroSection>
     </Wrapper>
   );

@@ -6,7 +6,6 @@ import {
   EditorPartyPartsFragmentDoc,
 } from "@generated/graphql";
 import { Image } from "./PartyItemStyle";
-import useTranslation from "next-translate/useTranslation";
 import { ItemType } from "@constants";
 
 interface Props {
@@ -30,7 +29,9 @@ const PartyItem: React.FC<Props> = ({ id, onClick, title, xl }) => {
   return (
     <Image
       onClick={onClick}
-      ref={drag}
+          ref={drag}
+          height={32}
+          width={32}
       src={logoUrl}
       alt={name}
       title={title || name}
