@@ -45,12 +45,12 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
   return (
       <Container>
           <Overlay/>
-                          <Image
-        src={backgroundImage.src}
-        alt={t("hero.altBackground")}
+          <Image
+            src={backgroundImage.src}
+            alt=""
               layout="fill"
-              objectFit="cover"
-          />
+            objectFit="cover"
+            />
       <Inner>
         <Header>
           <Title>{t("partners.title")}</Title>

@@ -25,7 +25,7 @@ const HomeQuizSection: React.FC = () => {
       variant="right"
       illustrationUrl={require("@assets/images/quiz.png")}
       additionalContent={
-        <AdditionalContentImage src={contentSrc} alt={t("quiz.altResults")} />
+        <AdditionalContentImage src={contentSrc} alt=""/>
       }
       content={
         <>

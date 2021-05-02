@@ -4,8 +4,7 @@
     "subTitle": "Szerzymy postawy obywatelskie i edukujemy politycznie ludzi na całym świecie.",
     "quizLink": "Test poglądów politycznych",
     "learnMore": "Dowiedz się więcej",
-    "candidate": "Candidate",
-    "altBackground": "Tło"
+    "candidate": "Candidate"
   },
   "quiz": {
     "title": "Test poglądów politycznych",
@@ -13,8 +12,7 @@
     "content": {
       "text": "Stworzyliśmy test poglądów politycznych, z którego skorzystało już blisko pół miliona Polek i Polaków oraz wiele znanych postaci polityki. Na podstawie kilkudziesięciu odpowiedzi dopasowuje od poglądy, najbliższą partię czy miejsce na kompasie politycznym.",
       "buttonText": "Sprawdź swoje poglądy!"
-    },
-    "altResults": "Wyniki"
+    }
   },
   "news": {
     "title": "Wiadomości i opinie",
