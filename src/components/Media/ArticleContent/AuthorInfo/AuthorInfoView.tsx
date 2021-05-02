@@ -30,7 +30,7 @@ const AuthorInfo: React.FC<Props> = ({ author }) => {
       <Header>
         <NameWrapper>
           {author.profile_image && (
-            <Image src={author.profile_image} alt={author.name} />
+                      <Image width={32} height={32} src={author.profile_image} alt={author.name} />
           )}
           <Name>{author.name}</Name>
         </NameWrapper>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const CategoryWrapper = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ export const Container = styled.div`
   ${breakpoint("xs", "sm")`
     flex-direction: column;
     padding: 0.75rem;
-    
+
     ${CategoryWrapper}:first-child {
       margin-bottom: 0.5rem;
     }
@@ -47,10 +48,8 @@ export const SubCategory = styled.span`
 
 export const AuthorWrapper = styled(CategoryWrapper)``;
 
-export const AuthorImage = styled.img`
+export const AuthorImage = styled(Image)`
   display: block;
-  height: 1.5rem;
-  width: 1.5rem;
   object-fit: cover;
   border-radius: 100%;
   margin-right: 0.75rem;

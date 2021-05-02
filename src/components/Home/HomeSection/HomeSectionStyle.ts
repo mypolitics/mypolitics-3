@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const Header = styled.header`
   text-align: right;
@@ -88,14 +89,13 @@ export const Lead = styled.p`
   `};
 `;
 
-export const Illustration = styled.img`
+export const IllustrationWrapper = styled.div`
   filter: drop-shadow(0px 0px 64px rgba(29, 114, 136, 0.25));
   position: absolute;
   top: 0;
   z-index: 1;
   height: auto;
   width: 33%;
-  border-radius: 100%;
   overflow: hidden;
   max-width: 7rem;
 
@@ -104,6 +104,10 @@ export const Illustration = styled.img`
       width: 20rem;
       max-width: unset;
     `};
+`;
+
+export const Illustration = styled(Image)`
+  border-radius: 100%;
 `;
 
 export const AdditionalContent = styled.div`
@@ -119,7 +123,7 @@ export const Container = styled.section<{ variant: "left" | "right" }>`
   ${({ variant }) => {
     const variants = {
       left: css`
-        ${Illustration} {
+        ${IllustrationWrapper} {
           right: 0;
           text-align: right;
         }

@@ -34,7 +34,7 @@ const AuthorHeader: React.FC<Props> = ({ post }) => {
       </CategoryWrapper>
       {author && (
         <AuthorWrapper>
-          {author.profile_image && <AuthorImage src={author.profile_image} />}
+          {author.profile_image && <AuthorImage width={24} height={24} alt={author.name} src={author.profile_image} />}
           <AuthorName>{author.name}</AuthorName>
         </AuthorWrapper>
       )}

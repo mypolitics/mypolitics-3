@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import breakpoint from "styled-components-breakpoint";
 import * as R from "ramda";
-import { transparentize } from "polished";
+import {transparentize} from "polished";
+import NextImage from 'next/image';
 
 export const Container = styled.article<{ featured: boolean }>`
   background: ${({ theme }) => theme.colors.backgroundDarken};
@@ -31,8 +32,7 @@ export const Info = styled.div`
   grid-gap: 1.25rem;
 `;
 
-export const Image = styled.img`
-  height: 2rem;
+export const Image = styled(NextImage)`
   width: auto;
   display: block;
 

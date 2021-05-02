@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CategoryWrapper } from "@components/Media/ArticleContent/AuthorHeader/AuthorHeaderStyle";
+import NextImage from 'next/image';
 
 export const Container = styled.div`
   display: flex;
@@ -25,10 +25,8 @@ export const NameWrapper = styled.div`
   font-size: 1.25rem;
 `;
 
-export const Image = styled.img`
+export const Image = styled(NextImage)`
   display: block;
-  height: 2rem;
-  width: 2rem;
   object-fit: cover;
   border-radius: 100%;
   margin-right: 1rem;
