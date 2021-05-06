@@ -41,7 +41,9 @@ const CountrySelect: React.FC<Props> = ({ color, value, onChange, list }) => {
       <CountryWrapper onClick={handleClick} key={country} title={title}>
         <CountryImage
           src={`/images/countries/${country}.png`}
-          alt={title}
+                alt={title}
+                width={26}
+                height={16}
         />
         <span>{title}</span>
       </CountryWrapper>
