@@ -24,7 +24,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const facebookLanguage = `${lang}_${lang.toUpperCase()}`;
 
   return (
-    <FacebookProvider appId="4144384798967211" language={facebookLanguage}>
+    <FacebookProvider appId="4144384798967211" language={facebookLanguage} wait>
       <ApolloProvider client={apolloClient}>
         <Layout>
           <Component {...pageProps} />
