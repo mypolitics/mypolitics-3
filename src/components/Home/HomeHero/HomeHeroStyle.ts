@@ -83,9 +83,6 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const IllustrationWrapper = styled.div`
-  width: auto;
-  max-width: 50%;
-  max-height: 409px;
     filter: drop-shadow(0px 0px 64px rgba(0, 42, 51, 0.33));
 
      ${breakpoint("md")`
@@ -95,10 +92,9 @@ export const IllustrationWrapper = styled.div`
           ${breakpoint("xs", "md")`
     position: absolute;
     bottom: -25vw;
-    height: 50vw;
-    width: auto;
-    max-width: unset;
     left: 50%;
+        width: 75vw;
+           height: 50vw;
     transform: translateX(-50%);
   `};
 
