@@ -1,7 +1,5 @@
 /* eslint @typescript-eslint/no-var-requires:0 */
-const nextTranslate = require("next-translate");
-const optimizedImages = require("next-optimized-images");
-const withPlugins = require("next-compose-plugins");
+const withTranslate = require("next-translate");
 
 const nextConfig = {
   webpack(config) {
@@ -49,20 +47,14 @@ const nextConfig = {
           },
         ]
       : [];
+    },
+    typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 };
 
-module.exports = withPlugins(
-  [
-    nextTranslate,
-    [
-      optimizedImages,
-      {
-        responsive: {
-          adapter: require("responsive-loader/sharp"),
-        },
-      },
-    ],
-  ],
-  nextConfig
-);
+module.exports = withTranslate(nextConfig);
