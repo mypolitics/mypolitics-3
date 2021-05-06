@@ -74,7 +74,7 @@ export const ContentFill = styled.div`
 export const Lead = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
   opacity: 0.5;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.fontWeight.primary.light};
   font-family: ${({ theme }) => theme.fontFamily.primary};
   line-height: 1.5;
@@ -82,6 +82,7 @@ export const Lead = styled.p`
 
   ${breakpoint("md")`
     max-width: 50%;
+    font-size: 1.5rem;
   `};
 
   ${breakpoint("lg")`
