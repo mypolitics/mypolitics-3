@@ -11,16 +11,21 @@ export const Container = styled.section`
 `;
 
 export const Image = styled(NextImage)`
-  width: 100%;
-  height: 100%;
-  max-width: ${({ theme }) => theme.breakpoints.xxl}px;
   object-fit: cover;
-  display: block;
   z-index: 0;
 
   ${breakpoint("xxl")`
     border-radius: 64px;
   `};
+`;
+
+export const Wrapper = styled.div`
+display: flex;
+  width: 100%;
+  height: 100%;
+    justify-content: center;
+  position: absolute;
+    max-width: ${({theme}) => theme.breakpoints.xxl}px;
 `;
 
 export const Overlay = styled.div`
@@ -29,8 +34,17 @@ export const Overlay = styled.div`
   display: block;
   width: 100%;
   height: 100%;
+  right: 50%;
+  left: 0;
+  top: 0;
+  bottom: 0;
   position: absolute;
   z-index: 1;
+  max-width: ${({ theme }) => theme.breakpoints.xxl}px;
+
+    ${breakpoint("xxl")`
+    border-radius: 64px;
+  `};
 `;
 
 export const Inner = styled.div`
