@@ -47,7 +47,7 @@ const HeroView: React.FC = () => {
               </Content>
               <IllustrationWrapper>
         <Illustration
-          src={require("@assets/images/candidate.png")}
+          src="/images/candidate.png"
                   alt={t("hero.candidate")}
                   width={740}
                   height={480}

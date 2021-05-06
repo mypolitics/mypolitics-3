@@ -55,7 +55,7 @@ const LanguageSelect: React.FC<Props> = ({
           key={id}
           title={name}
           /* eslint-disable-next-line import/no-dynamic-require */
-          image={require(`@assets/images/langs/${id}.png`)}
+          image={`/images/langs/${id}.png`}
           as="button"
           type="button"
         />
@@ -64,12 +64,12 @@ const LanguageSelect: React.FC<Props> = ({
 
     return (
       <Link href={router.asPath} locale={id} key={id} passHref={id !== lang}>
-        <LanguageImage
-          onClick={handleClick}
-          key={id}
-          title={name}
-          /* eslint-disable-next-line import/no-dynamic-require */
-          image={require(`@assets/images/langs/${id}.png`)}
+            <LanguageImage
+                onClick={handleClick}
+                key={id}
+                title={name}
+                /* eslint-disable-next-line import/no-dynamic-require */
+                image={`/images/langs/${id}.png`}
         />
       </Link>
     );

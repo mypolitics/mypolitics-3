@@ -13,10 +13,10 @@ interface UseArticlesListHeader {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const imageSrc: Record<ListType, any> = {
-  news: require("@assets/images/media/news-section.png"),
-  view: require("@assets/images/media/view-section.png"),
-  "short-news": require("@assets/images/media/short-news-section.png"),
-  "short-talk": require("@assets/images/media/short-talk-section.png"),
+  news: "/images/media/news-section.png",
+  view: "/images/media/view-section.png",
+  "short-news": "/images/media/short-news-section.png",
+  "short-talk": "/images/media/short-talk-section.png",
 };
 
 const logoTypes = {

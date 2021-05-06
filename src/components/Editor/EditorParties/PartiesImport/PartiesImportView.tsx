@@ -37,7 +37,7 @@ const IdeologiesImport: React.FC<Props> = ({ editor }) => {
           onClick={() => actions.parties.import(countryParties[country])}
         >
           <Image
-            src={require(`@assets/images/countries/${country}.png`)}
+            src={`/images/countries/${country}.png`}
                   alt={country}
                   width={32}
                   height={20}

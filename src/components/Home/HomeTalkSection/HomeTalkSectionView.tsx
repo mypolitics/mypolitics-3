@@ -28,7 +28,7 @@ const HomeTalkSection: React.FC<Props> = ({ talks }) => {
       title={t("talk.title")}
       slogan={t("talk.slogan")}
       variant="right"
-      illustrationUrl={require("@assets/images/debate.png")}
+      illustrationUrl="/images/debate.png"
       content={
         <>
           <p>{t("talk.content.text")}</p>

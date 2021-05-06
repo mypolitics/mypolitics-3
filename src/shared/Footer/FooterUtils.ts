@@ -63,8 +63,8 @@ export const socialLinks = (lang: string): SocialLink[] => [
         : "https://patreon.com/mypolitics",
     icon:
       lang === "pl"
-        ? require("@assets/images/patronite.png")
-        : require("@assets/images/patreon.png"),
+        ? '/images/patronite.png'
+        : '/images/patreon.png',
     customColor: lang === "pl" ? "#ED1B2D" : "#FF424D",
     alt: lang === "pl" ? "Patronite" : "Patreon",
   },
