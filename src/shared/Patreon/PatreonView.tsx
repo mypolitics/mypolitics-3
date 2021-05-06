@@ -35,10 +35,12 @@ const Patreon: React.FC<Props> = ({ patreons }) => {
         <Logo
           src={
             lang === "pl"
-              ? require("@assets/images/patronite-full.png")
-              : require("@assets/images/patreon-full.png")
+              ? "/images/patronite-full.png"
+              : "/images/patreon-full.png"
           }
-          alt={t("patreon.title")}
+                  alt={t("patreon.title")}
+                  width={lang === "pl" ? 120 : 155}
+                  height={32}
         />
         <HeaderText>{t("patreon.description")}</HeaderText>
       </Header>

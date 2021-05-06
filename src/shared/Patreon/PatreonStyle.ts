@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { transparentize } from "polished";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const Container = styled.div`
   display: grid;
@@ -33,11 +34,7 @@ export const Header = styled.div`
   `};
 `;
 
-export const Logo = styled.img`
-  display: block;
-  height: 2rem;
-  width: auto;
-
+export const Logo = styled(Image)`
   ${breakpoint("xs", "md")`
     margin-bottom: 1rem;
   `};
@@ -64,7 +61,7 @@ export const Inner = styled.div`
   padding: 2rem;
   background: ${({ theme }) => theme.colors.backgroundDarken};
   border-radius: 0.5rem;
-  
+
   ${breakpoint("xs", "md")`
     grid-gap: 1rem;
     padding: 1rem;
@@ -81,7 +78,7 @@ export const ListWrapper = styled.div`
     margin: 0;
     padding: 0;
   }
-  
+
   ${breakpoint("xs", "md")`
     grid-gap: 0.75rem;
   `};
