@@ -16,7 +16,7 @@ interface Props {
 
 const TeamMember: React.FC<Props> = ({ data, showRole = true }) => (
   <Container>
-    <Image src={data.image.formats.thumbnail.url} alt={data.name} />
+        <Image src={data.image.formats.thumbnail.url} alt={data.name} width={38} height={38}/>
     <Inner>
       <Content>
         <Title>{data.name}</Title>

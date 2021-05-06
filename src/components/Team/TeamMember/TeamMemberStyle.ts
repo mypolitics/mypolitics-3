@@ -1,14 +1,13 @@
 import styled from "styled-components";
+import NextImage from 'next/image';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const Image = styled.img`
+export const Image = styled(NextImage)`
   border-radius: 0.5rem;
-  height: 3rem;
-  width: 3rem;
   object-fit: cover;
   margin-right: 1rem;
 `;
