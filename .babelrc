@@ -12,7 +12,6 @@
       {
         "root": ["./"],
         "alias": {
-          "@assets/*": "./src/assets/*",
           "@components/*": "./src/components/*",
           "@generated/*": "./src/generated/*",
           "@layout": "./src/layout",
