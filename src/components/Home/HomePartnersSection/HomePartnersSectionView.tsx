@@ -14,9 +14,8 @@ import {
   Content,
   ContentTitle,
   ContentList,
+  Wrapper
 } from "./HomePartnersSectionStyle";
-
-const backgroundImage = require("@assets/images/home-hero.png?resize&sizes[]=600&sizes[]=1200&sizes[]=1440");
 
 interface Props {
   partners: HomePageQuery["partner"]["partners"];
@@ -44,13 +43,15 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
 
   return (
       <Container>
-          <Overlay/>
+          <Wrapper>
+                  <Overlay/>
           <Image
-            src={backgroundImage.src}
+            src="/images/home-hero.png"
             alt=""
               layout="fill"
-            objectFit="cover"
+              priority
             />
+          </Wrapper>
       <Inner>
         <Header>
           <Title>{t("partners.title")}</Title>
