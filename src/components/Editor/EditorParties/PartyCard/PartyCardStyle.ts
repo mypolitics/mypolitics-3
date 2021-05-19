@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import NextImage from 'next/image';
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors.background};
 `;
 
-export const Image = styled.img`
+export const Image = styled(NextImage)`
   display: block;
   height: 1.5rem;
   width: 1.5rem;

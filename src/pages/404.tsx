@@ -22,7 +22,7 @@ const NotFound: NextPage = () => {
       <Title>{t("404.title")}</Title>
       <Image
         src="/static/404.jpg"
-        width={300}
+        width={400}
         height={350}
         alt="Obrazek 'PKW Error 404' autorstwa Goorsky.pl"
       />

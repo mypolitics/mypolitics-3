@@ -5,10 +5,10 @@ import useTranslation from "next-translate/useTranslation";
 import DefaultLink from "next/dist/client/link";
 import { paths } from "@constants";
 import * as R from "ramda";
-import { AdditionalContentImage } from "./HomeQuizSectionStyle";
+import { AdditionalContentImage, ImageBox } from "./HomeQuizSectionStyle";
 
-const plImg = require("@assets/images/mypolitics-quiz-results-pl.png");
-const intImg = require("@assets/images/mypolitics-quiz-results.png");
+const plImg = "/images/mypolitics-quiz-results-pl.png";
+const intImg = "/images/mypolitics-quiz-results.png";
 
 const HomeQuizSection: React.FC = () => {
   const { t, lang } = useTranslation("home");
@@ -23,8 +23,12 @@ const HomeQuizSection: React.FC = () => {
       title={t("quiz.title")}
       slogan={t("quiz.slogan")}
       variant="right"
-      illustrationUrl={require("@assets/images/quiz.png")}
-      additionalContent={<AdditionalContentImage src={contentSrc} />}
+      illustrationUrl="/images/quiz.png"
+          additionalContent={
+          <ImageBox>
+                  <AdditionalContentImage src={contentSrc} width={900} height={746} alt="" />
+                  </ImageBox>
+      }
       content={
         <>
           <p>{t("quiz.content.text")}</p>

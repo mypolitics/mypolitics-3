@@ -18,7 +18,7 @@ export const Select = styled.select`
   text-indent: 1px;
   text-overflow: "";
   cursor: pointer;
-  background-image: url(${require("@assets/images/icons/fa-solid_angle-down.png")});
+  background-image: url("/images/icons/fa-solid_angle-down.png");
   background-repeat: no-repeat;
   background-position-x: calc(100% - 0.5rem);
   background-position-y: 50%;

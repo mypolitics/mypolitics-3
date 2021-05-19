@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const Wrapper = styled.div`
   ${breakpoint("xs", "md")`
@@ -81,28 +82,28 @@ export const ButtonsWrapper = styled.div`
   }
 `;
 
-export const Illustration = styled.img`
-  width: auto;
-  filter: drop-shadow(0px 0px 64px rgba(0, 42, 51, 0.33));
-  max-width: 50%;
-  max-height: 409px;
-  image-rendering: -webkit-optimize-contrast;
+export const IllustrationWrapper = styled.div`
+    filter: drop-shadow(0px 0px 64px rgba(0, 42, 51, 0.33));
 
-  ${breakpoint("xs", "md")`
+     ${breakpoint("md")`
+        padding-left: 4rem;
+    `};
+
+          ${breakpoint("xs", "md")`
     position: absolute;
     bottom: -25vw;
-    height: 50vw;
-    width: auto;
-    max-width: unset;
     left: 50%;
+        width: 75vw;
+           height: 50vw;
     transform: translateX(-50%);
   `};
 
-  ${breakpoint("md")`
-    padding-left: 4rem;
-  `};
 
-  @media only screen and (min-width: 1660px) {
-    margin-right: -12rem;
-  }
+    @media only screen and (min-width: 1660px) {
+        margin-right: -12rem;
+    }
+`;
+
+export const Illustration = styled(Image)`
+  image-rendering: -webkit-optimize-contrast;
 `;

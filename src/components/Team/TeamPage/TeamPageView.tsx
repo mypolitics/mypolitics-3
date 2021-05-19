@@ -41,7 +41,7 @@ const TeamPage: React.FC<Props> = ({ departments }) => {
       {departments.map(({ id, logo, title, members, leaders }) => (
         <DeptWrapper key={id}>
           <DeptHeader>
-            <DeptImage src={logo.url} alt={title} />
+                  <DeptImage src={logo.url} alt={title} width={124} height={24}/>
           </DeptHeader>
           <DeptInner>
             <div>

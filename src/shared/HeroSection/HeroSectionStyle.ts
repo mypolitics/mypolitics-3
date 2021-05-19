@@ -1,21 +1,11 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
-export const BackgroundImage = styled.img`
-  max-height: 90%;
-  display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  z-index: -1;
+export const BackgroundImage = styled(Image)`
   object-fit: cover;
-  max-width: ${({ theme }) => theme.breakpoints.xxl}px;
-  width: 100%;
-
-  ${breakpoint("md")`
-    max-height: 75%;
-  `};
+display: block;
+  z-index: -1;
 
   ${breakpoint("xxl")`
     border-bottom-left-radius: 128px;
@@ -23,9 +13,20 @@ export const BackgroundImage = styled.img`
   `};
 `;
 
-export const Overlay = styled(BackgroundImage)`
+export const Overlay = styled.div`
   background: linear-gradient(135deg, #002a33 0%, rgba(0, 42, 51, 0) 100%);
   margin-left: -1px;
+  position: absolute;
+  left: 50%;
+  z-index: 0;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 100%;
+
+  ${breakpoint("xxl")`
+    border-bottom-left-radius: 128px;
+    border-bottom-right-radius: 128px;
+  `};
 `;
 
 export const Inner = styled.div`
@@ -60,4 +61,13 @@ export const Container = styled.section`
       max-height: 768px;
     };
   `};
+`;
+
+export const Wrapper = styled.div`
+display: flex;
+  width: 100%;
+  height: 100%;
+    justify-content: center;
+  position: absolute;
+    max-width: ${({theme}) => theme.breakpoints.xxl}px;
 `;

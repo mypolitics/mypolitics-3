@@ -7,7 +7,8 @@ import { useEditorStandardPartiesQuery } from "@generated/graphql";
 import { UseEditor } from "@components/Editor/utils/useEditor";
 import * as R from "ramda";
 import useTranslation from "next-translate/useTranslation";
-import { Container } from "./PartiesImportStyle";
+import {Container} from "./PartiesImportStyle";
+import Image from 'next/image';
 
 library.add(faPlus);
 
@@ -35,9 +36,11 @@ const IdeologiesImport: React.FC<Props> = ({ editor }) => {
           beforeIcon={<FontAwesomeIcon icon={faPlus} />}
           onClick={() => actions.parties.import(countryParties[country])}
         >
-          <img
-            src={require(`@assets/images/countries/${country}.png`)}
-            alt={country}
+          <Image
+            src={`/images/countries/${country}.png`}
+                  alt={country}
+                  width={32}
+                  height={20}
           />
         </Button>
       ))}

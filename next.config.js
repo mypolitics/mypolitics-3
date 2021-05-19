@@ -1,18 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires:0 */
-const nextTranslate = require("next-translate");
-const optimizedImages = require("next-optimized-images");
-const withPlugins = require("next-compose-plugins");
+const withTranslate = require("next-translate");
 
 const nextConfig = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      include: /\.(js|ts)x?$/,
-      use: ["@svgr/webpack"],
-    });
-
-    return config;
-  },
   serverRuntimeConfig: {
     CONTENT_ADMIN_API_KEY: process.env.CONTENT_ADMIN_API_KEY,
   },
@@ -25,29 +14,38 @@ const nextConfig = {
     webpack5: true,
     strictPostcssConfiguration: true,
   },
+  images: {
+      domains: [
+          'files.mypolitics.pl',
+          'editor.mypolitics.pl'
+      ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/talks",
+        destination: "https://youtube.com/myPolitics",
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     return process.env.NODE_ENV !== "production"
       ? [
           {
             source: "/api/:path*",
-            destination: "http://localhost:5000/:path*",
+            destination: "https://mypolitics.pl/api/:path*",
           },
         ]
       : [];
+    },
+    typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 };
 
-module.exports = withPlugins(
-  [
-    nextTranslate,
-    [
-      optimizedImages,
-      {
-        responsive: {
-          adapter: require("responsive-loader/sharp"),
-        },
-      },
-    ],
-  ],
-  nextConfig
-);
+module.exports = withTranslate(nextConfig);

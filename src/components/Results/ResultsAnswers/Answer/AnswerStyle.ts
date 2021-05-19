@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { SurveyAnswerType } from "@generated/graphql";
 import { transparentize } from "polished";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const Header = styled.div`
   padding: 1rem;
@@ -133,9 +134,7 @@ export const IdeologyWrapper = styled.button<{ background: string }>`
   }
 `;
 
-export const PartyImage = styled.img`
-  height: 2rem;
-  width: 2rem;
+export const PartyImage = styled(Image)`
   border-radius: 0.25rem;
   display: block;
 `;

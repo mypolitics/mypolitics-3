@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import NextImage from 'next/image';
 
-export const Image = styled.img<{ xl: boolean }>`
+export const Image = styled(NextImage)<{ xl: boolean }>`
   display: block;
   height: ${({ xl }) => (xl ? 3 : 2)}rem;
   width: ${({ xl }) => (xl ? 3 : 2)}rem;

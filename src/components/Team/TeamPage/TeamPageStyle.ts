@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { transparentize } from "polished";
 import breakpoint from "styled-components-breakpoint";
+import Image from 'next/image';
 
 export const Container = styled.div`
   display: grid;
@@ -40,10 +41,7 @@ export const DeptHeader = styled.div`
   padding: 1.5rem;
 `;
 
-export const DeptImage = styled.img`
-  display: block;
-  height: 1.5rem;
-  width: auto;
+export const DeptImage = styled(Image)`
   box-shadow: 0 0 24px 0
     ${({ theme }) => transparentize(0.67, theme.colors.primary)};
 `;

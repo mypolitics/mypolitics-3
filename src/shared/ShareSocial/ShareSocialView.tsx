@@ -10,12 +10,7 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
 import useTranslation from "next-translate/useTranslation";
 import useCanonicalUrl from "@utils/hooks/useCanonicalUrl";
-import {
-  Wrapper,
-  Container,
-  ButtonGroup,
-  TitleCommunity,
-} from "./ShareSocialStyle";
+import { Wrapper, Container, ButtonGroup, Title } from "./ShareSocialStyle";
 
 interface Props {
   message?: string;
@@ -29,12 +24,13 @@ const ShareSocial: React.FC<Props> = ({ message = "", defaultPath }) => {
   return (
     <Wrapper>
       <Container>
-        <h5>{t("share.share")}</h5>
+        <Title>{t("share.share")}</Title>
         <ButtonGroup>
           <a
             href={`https://twitter.com/intent/tweet?url=${url}&via=mypolitics__&text=${message}&hashtags=myPolitics`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter"
           >
             <Button background="white">
               <FontAwesomeIcon icon={faTwitter} />
@@ -44,6 +40,7 @@ const ShareSocial: React.FC<Props> = ({ message = "", defaultPath }) => {
             href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <Button background="white">
               <FontAwesomeIcon
@@ -65,9 +62,7 @@ const ShareSocial: React.FC<Props> = ({ message = "", defaultPath }) => {
         </ButtonGroup>
       </Container>
       <Container>
-        {lang !== "pl" && (
-          <TitleCommunity>{t("share.community")}</TitleCommunity>
-        )}
+        {lang !== "pl" && <Title>{t("share.community")}</Title>}
         <ButtonGroup>
           <a href="https://discord.gg/k9MbvxapuM" rel="noreferrer">
             <Button

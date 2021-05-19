@@ -26,6 +26,7 @@ import {
   Content,
   ContentWrapper,
   ShowMoreOverlay,
+  ThumbnailWrapper,
 } from "./ArticleContentStyle";
 
 const getTime = () => Math.floor(new Date().getTime() / 1000);
@@ -144,8 +145,10 @@ const ArticleContent: React.FC<Props> = ({
             <Lead as="div">{leadItems.join(" ")}</Lead>
           </Header>
           <AuthorHeader post={post} />
-        </ContentWrapper>
-        <ThumbnailImage ref={ref} src={featureImage} alt={title} />
+              </ContentWrapper>
+              <ThumbnailWrapper>
+                  <ThumbnailImage width={1350} height={1000} ref={ref} src={featureImage} alt={title} />
+                  </ThumbnailWrapper>
         {!showFull && (
           <ShowMoreOverlay>
             {timeout && <ProgressCircle timeoutStart={timeoutStart} />}

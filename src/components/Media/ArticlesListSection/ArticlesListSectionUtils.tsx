@@ -1,7 +1,8 @@
 import * as React from "react";
 import useTranslation from "next-translate/useTranslation";
 import { LogoType, useLogo } from "@utils/hooks/useLogo";
-import { ListType } from "./ArticlesListSectionTypes";
+import {ListType} from "./ArticlesListSectionTypes";
+import Image from 'next/image';
 
 interface UseArticlesListHeader {
   title: React.ReactNode;
@@ -12,10 +13,10 @@ interface UseArticlesListHeader {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const imageSrc: Record<ListType, any> = {
-  news: require("@assets/images/media/news-section.png"),
-  view: require("@assets/images/media/view-section.png"),
-  "short-news": require("@assets/images/media/short-news-section.png"),
-  "short-talk": require("@assets/images/media/short-talk-section.png"),
+  news: "/images/media/news-section.png",
+  view: "/images/media/view-section.png",
+  "short-news": "/images/media/short-news-section.png",
+  "short-talk": "/images/media/short-talk-section.png",
 };
 
 const logoTypes = {
@@ -31,7 +32,7 @@ export const useArticlesListHeader = (
   const { url, name } = useLogo(logoTypes[type]);
 
   if (isShort) {
-    const title = <img src={url} alt={name} />;
+      const title = <Image src={url} alt={name} width={805} height={129}/>;
 
     return {
       title,

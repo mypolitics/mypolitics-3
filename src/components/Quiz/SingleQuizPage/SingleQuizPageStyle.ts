@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
-import { transparentize } from "polished";
+import {transparentize} from "polished";
+import Image from 'next/image';
 
 export const Container = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ export const AuthorHeader = styled.div`
 
   ${breakpoint("xs", "sm")`
     flex-direction: column;
-    
+
     span {
       margin-left: 0;
       margin-top: 0.5rem;
@@ -60,9 +61,7 @@ export const AuthorHeader = styled.div`
   `}
 `;
 
-export const Logo = styled.img`
-  height: 1.5rem;
-  width: auto;
+export const Logo = styled(Image)`
   display: block;
 
   @media only screen and (max-width: 360px) {
@@ -158,7 +157,7 @@ export const MetaWrapper = styled.div`
   ${breakpoint("xs", "md")`
     justify-content: center;
     flex-direction: column;
-    
+
     & > ${Chips}:not(:last-child) {
       margin-bottom: 1rem;
     }

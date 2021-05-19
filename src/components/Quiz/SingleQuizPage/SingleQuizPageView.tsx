@@ -83,7 +83,7 @@ const QuizzesPage: React.FC<Props> = ({ quiz }) => {
       <GoogleAd id="myp3-standard-top" />
       <Container>
         <Header>
-          {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />}
+                  {quiz.logoUrl && <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} width={161} height={32}/>}
           {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
           {!isClassic && (
             <Button onClick={handleStartClick} loading={loading} showShadow>

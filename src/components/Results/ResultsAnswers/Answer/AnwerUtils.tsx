@@ -63,7 +63,7 @@ export const useAnswerEffects = (answer: LeanAnswer): UseAnswerEffects => {
   ));
 
   const mapToPartyImage = R.map((p) => (
-    <PartyImage key={p.id} src={p.logoUrl} alt={p.name} />
+      <PartyImage key={p.id} src={p.logoUrl} alt={p.name} width={32} height={32}/>
   ));
 
   const mapToEffect = (effect: LeanEffect) => ({

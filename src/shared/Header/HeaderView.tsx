@@ -11,6 +11,7 @@ import { useFirstTimer } from "@utils/hooks/useFirstTimer";
 import { HeaderNavElement, useHeaderNav } from "@shared/Header/HeaderUtils";
 import UserInfo from "@shared/UserInfo";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 import {
   Container,
   DesktopNavigation,
@@ -40,6 +41,7 @@ const Header: React.FC<Props> = ({ forceHighlight = false }) => {
   const { scrollY } = useWindowScroll(false);
   const scrolled = scrollY > 60;
   const highlighted = scrolled || showMenu || forceHighlight;
+  const { t } = useTranslation("common");
 
   const toggleMenu = () => setShowMenu(!showMenu);
 
@@ -86,7 +88,10 @@ const Header: React.FC<Props> = ({ forceHighlight = false }) => {
           </DesktopNavigation>
           <LanguageSelect />
           <MobileNavigationWrapper>
-            <MobileNavigationButton onClick={toggleMenu}>
+            <MobileNavigationButton
+              onClick={toggleMenu}
+              aria-label={t("header.altMenuButton")}
+            >
               <FontAwesomeIcon icon={showMenu ? faTimes : faBars} />
             </MobileNavigationButton>
             <MobileNavigation show={showMenu} buttonPadding>

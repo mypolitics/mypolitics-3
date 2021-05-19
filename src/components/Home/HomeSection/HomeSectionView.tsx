@@ -8,7 +8,8 @@ import {
   Illustration,
   AdditionalContent,
   ContentInner,
-  Lead,
+    Lead,
+  IllustrationWrapper
 } from "./HomeSectionStyle";
 
 interface Props {
@@ -29,8 +30,10 @@ const HomeSection: React.FC<Props> = ({
   illustrationUrl,
 }) => (
   <Container variant={variant}>
-    <div className="container">
-      <Illustration src={illustrationUrl} alt={title} />
+        <div className="container">
+            <IllustrationWrapper>
+            <Illustration src={illustrationUrl} width={320} height={320} alt={title} />
+            </IllustrationWrapper>
       <Header>
         <Lead>{slogan}</Lead>
         <Title>{title}</Title>

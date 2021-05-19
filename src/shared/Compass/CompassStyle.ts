@@ -4,7 +4,7 @@ export const Container = styled.div<{ clickable: boolean }>`
   display: block;
   width: 9.75rem;
   height: 9.75rem;
-  background-image: url(${require("@assets/images/compass_chart.png")});
+  background-image: url("/images/compass_chart.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

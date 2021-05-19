@@ -77,7 +77,7 @@ const EditorContent: React.FC = () => {
             {/*  header={ */}
             {/*    <Title> */}
             {/*      <CompassImage */}
-            {/*        src={require("@assets/images/compass_chart.png")} */}
+            {/*        src="/images/compass_chart.png" */}
             {/*        alt="Kompas" */}
             {/*      /> */}
             {/*      <span>Kompas</span> */}

@@ -73,7 +73,7 @@ const QuizLink: React.FC<Props> = ({
           <Link href={path}>
             <a>
               {quiz.logoUrl && (
-                <Image src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
+                <Image width={32} height={32} src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
               )}
               {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
             </a>

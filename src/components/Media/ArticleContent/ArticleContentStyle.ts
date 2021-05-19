@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Lead, Title } from "@shared/Typography";
 import breakpoint from "styled-components-breakpoint";
-import { transparentize } from "polished";
+import {transparentize} from "polished";
+import Image from 'next/image';
 
 export const Container = styled.article`
   max-width: ${({ theme }) => theme.breakpoints.xl}px;
@@ -101,11 +102,9 @@ export const Header = styled.header`
   }
 `;
 
-export const ThumbnailImage = styled.img`
+export const ThumbnailWrapper = styled.div`
   width: 100%;
   display: block;
-  border-radius: 1rem;
-  object-fit: cover;
   aspect-ratio: 4/3;
 
   @supports not (aspect-ratio: 4/3) {
@@ -123,6 +122,11 @@ export const ThumbnailImage = styled.img`
   ${breakpoint("md")`
     border-radius: 2rem;
   `};
+`;
+
+export const ThumbnailImage = styled(Image)`
+  border-radius: 1rem;
+    object-fit: cover;
 `;
 
 export const Content = styled.div`

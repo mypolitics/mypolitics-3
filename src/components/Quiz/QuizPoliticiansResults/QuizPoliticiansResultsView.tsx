@@ -57,7 +57,7 @@ const QuizPoliticiansResults: React.FC<Props> = ({
   const toPoliticianResults = ({ rid, politician }: PoliticianResults) => (
     <Link href={paths.results(rid)} passHref key={politician.name}>
       <PoliticianResultsLink>
-        <PoliticianImage src={politician.image.url} alt={politician.name} />
+              <PoliticianImage src={politician.image.url} alt={politician.name} width={221} height={112}/>
         <PoliticianName>{politician.name}</PoliticianName>
       </PoliticianResultsLink>
     </Link>

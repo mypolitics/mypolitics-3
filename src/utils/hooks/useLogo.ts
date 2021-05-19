@@ -19,28 +19,28 @@ interface Logo {
 
 const logos: Logo[] = [
   {
-    url: require("@assets/images/logos/group.png"),
+    url: "/images/logos/group.png",
     name: "myPolitics Group",
     paths: [],
     homepage: paths.home,
     type: LogoType.Group,
   },
   {
-    url: require("@assets/images/logos/media.png"),
+    url: "/images/logos/media.png",
     name: "myPolitics Media",
     paths: [paths.articles],
     homepage: paths.articles,
     type: LogoType.Media,
   },
   {
-    url: require("@assets/images/logos/talk.png"),
+    url: "/images/logos/talk.png",
     name: "myPolitics Talk",
     paths: [paths.talks],
     homepage: paths.talks,
     type: LogoType.Talk,
   },
   {
-    url: require("@assets/images/logos/quiz.png"),
+    url: "/images/logos/quiz.png",
     name: "myPolitics Quiz",
     paths: [paths.quizzes, paths.survey(""), paths.results("")],
     homepage: paths.quizzes,

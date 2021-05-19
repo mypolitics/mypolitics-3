@@ -40,7 +40,9 @@
     "quiz": "Quizzes",
     "history": "History",
     "creator": "Creator's panel",
-    "quizMod": "Moderation"
+    "quizMod": "Moderation",
+    "altLanguage": "Select language",
+    "altMenuButton": "Menu"
   },
   "share": {
     "share": "Share",
@@ -88,10 +90,7 @@
   },
   "editorCta": {
     "button": "Creator's panel",
-    "title": [
-      "Didn't like this quiz?",
-      "You can create a better one!"
-    ]
+    "title": ["Didn't like this quiz?", "You can create a better one!"]
   },
   "standardPage": {
     "section": {

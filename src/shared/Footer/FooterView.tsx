@@ -21,17 +21,25 @@ import {
   MainCopyright,
   TeamContainer,
 } from "./FooterStyle";
-import { socialLinks, SocialLink as SocialLinkType } from "./FooterUtils";
+import {socialLinks, SocialLink as SocialLinkType} from "./FooterUtils";
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   const { t, lang } = useTranslation("common");
   const year = new Date().getFullYear();
-  const toSocialLink = ({ url, icon, customColor }: SocialLinkType) => (
-    <SocialLink key={url} href={url} color={customColor} target="_blank">
+  const toSocialLink = ({ url, icon, alt, customColor }: SocialLinkType) => (
+    <SocialLink
+      key={url}
+      href={url}
+      color={customColor}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={alt}
+    >
       {typeof icon === "object" && "iconName" in icon ? (
         <FontAwesomeIcon icon={icon} />
       ) : (
-        <img src={icon} alt={url} />
+                  <Image src={icon} alt={alt} width={16} height={16}/>
       )}
     </SocialLink>
   );
@@ -45,22 +53,22 @@ const Footer: React.FC = () => {
           <Copyright>
             <MainCopyright>
               <MainLogo
-                src={require("@assets/images/logos/group.png")}
+                src="/images/logos/group.png"
                 alt="myPolitics Group"
               />
               <Title>&copy;&nbsp;{year}</Title>
             </MainCopyright>
             <CopyrightGroup>
               <GroupLogo
-                src={require("@assets/images/logos/media.png")}
+                src="/images/logos/media.png"
                 alt="myPolitics Media"
               />
               <GroupLogo
-                src={require("@assets/images/logos/talk.png")}
+                src="/images/logos/talk.png"
                 alt="myPolitics Talk"
               />
               <GroupLogo
-                src={require("@assets/images/logos/quiz.png")}
+                src="/images/logos/quiz.png"
                 alt="myPolitics Quiz"
               />
             </CopyrightGroup>

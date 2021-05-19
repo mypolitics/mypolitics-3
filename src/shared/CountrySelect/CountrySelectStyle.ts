@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { transparentize } from "polished";
+import Image from 'next/image';
 
 export const Wrapper = styled.div`
   max-height: 2rem;
@@ -38,10 +38,8 @@ export const CountryWrapper = styled.div`
   }
 `;
 
-export const CountryImage = styled.img`
+export const CountryImage = styled(Image)`
   border-radius: 0.125rem;
-  height: 1rem;
-  width: 1.6rem;
   border: 0;
   cursor: pointer;
   object-fit: cover;

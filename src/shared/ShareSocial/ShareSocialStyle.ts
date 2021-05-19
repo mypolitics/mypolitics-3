@@ -84,4 +84,7 @@ export const ButtonGroup = styled.div`
   `}
 `;
 
-export const TitleCommunity = styled.h5``;
+export const Title = styled.p`
+  margin: 0;
+  font-size: 1rem;
+`;

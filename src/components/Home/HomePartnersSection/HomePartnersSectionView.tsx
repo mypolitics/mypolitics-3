@@ -1,6 +1,6 @@
 import React from "react";
 import * as R from "ramda";
-import { ComponentPersonPartner, HomePageQuery } from "@generated/graphql";
+import { HomePageQuery } from "@generated/graphql";
 import { Lead, Title } from "@shared/Typography";
 import useTranslation from "next-translate/useTranslation";
 import {
@@ -14,9 +14,8 @@ import {
   Content,
   ContentTitle,
   ContentList,
+  Wrapper
 } from "./HomePartnersSectionStyle";
-
-const backgroundImage = require("@assets/images/home-hero.png?resize&sizes[]=600&sizes[]=1200&sizes[]=1440");
 
 interface Props {
   partners: HomePageQuery["partner"]["partners"];
@@ -34,6 +33,8 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
       <PartnerImage
         src={partner.image.formats.thumbnail.url}
         alt={partner.name}
+        width={64}
+        height={64}
       />
     </PartnerLink>
   );
@@ -41,9 +42,16 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
   const partnersLinks = R.map(toPartnerLink, partners);
 
   return (
-    <Container>
-      <Image src={backgroundImage.src} srcSet={backgroundImage.srcSet} />
-      <Overlay as="div" />
+      <Container>
+          <Wrapper>
+                  <Overlay/>
+          <Image
+            src="/images/home-hero.png"
+            alt=""
+              layout="fill"
+              priority
+            />
+          </Wrapper>
       <Inner>
         <Header>
           <Title>{t("partners.title")}</Title>
