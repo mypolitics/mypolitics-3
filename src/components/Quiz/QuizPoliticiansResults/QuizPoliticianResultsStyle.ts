@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from 'next/image';
 
 export const PoliticianResultsLink = styled.a`
   display: flex;
@@ -15,11 +16,9 @@ export const PoliticianResultsLink = styled.a`
   }
 `;
 
-export const PoliticianImage = styled.img`
+export const PoliticianImage = styled(Image)`
   display: block;
   object-fit: cover;
-  height: 7rem;
-  width: 100%;
 `;
 
 export const PoliticianName = styled.div`

@@ -32,9 +32,9 @@ const HomePartnersSection: React.FC<Props> = ({ partners }) => {
     >
       <PartnerImage
         src={partner.image.formats.thumbnail.url}
-              alt={partner.name}
-              width={64}
-              height={64}
+        alt={partner.name}
+        width={64}
+        height={64}
       />
     </PartnerLink>
   );

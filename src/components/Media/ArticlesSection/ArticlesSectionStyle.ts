@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import breakpoint from "styled-components-breakpoint";
+import NextImage from 'next/image';
 
 export const Container = styled.section`
   display: flex;
@@ -11,12 +12,10 @@ export const Container = styled.section`
   `};
 `;
 
-export const Image = styled.img`
+export const Image = styled(NextImage)`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   border-radius: 32px;
   z-index: -1;

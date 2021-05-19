@@ -2,15 +2,6 @@
 const withTranslate = require("next-translate");
 
 const nextConfig = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      include: /\.(js|ts)x?$/,
-      use: ["@svgr/webpack"],
-    });
-
-    return config;
-  },
   serverRuntimeConfig: {
     CONTENT_ADMIN_API_KEY: process.env.CONTENT_ADMIN_API_KEY,
   },
@@ -43,7 +34,7 @@ const nextConfig = {
       ? [
           {
             source: "/api/:path*",
-            destination: "http://localhost:5000/:path*",
+            destination: "https://mypolitics.pl/api/:path*",
           },
         ]
       : [];
