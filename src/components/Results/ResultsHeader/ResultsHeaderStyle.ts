@@ -30,7 +30,7 @@ export const PoliticianSubHeader = styled(Header)`
   border-radius: 0 !important;
   background: ${({ theme }) => theme.colors.primary} !important;
   font-size: 1.1rem;
-  color: ${({ theme }) => theme.colors.backgroundLighten} !important;;
+  color: ${({ theme }) => theme.colors.backgroundLighten} !important;
   font-weight: ${({ theme }) => theme.fontWeight.secondary.bold};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   padding: 1.25rem !important;
@@ -67,7 +67,7 @@ export const AuthorHeader = styled.div`
 
   ${breakpoint("xs", "sm")`
     flex-direction: column;
-    
+
     span {
       margin-left: 0;
       margin-top: 0.5rem;
@@ -138,4 +138,11 @@ export const Title = styled.div`
   ${breakpoint("md")`
     font-size: 1.25rem;
   `};
+`;
+
+export const Row = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-flow: column;
+  align-items: center;
 `;

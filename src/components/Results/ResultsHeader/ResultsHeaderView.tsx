@@ -8,6 +8,7 @@ import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { paths } from "@constants";
 import { translate } from "@utils/translation";
+import Button from "@shared/Button";
 import {
   Info,
   Header,
@@ -17,6 +18,7 @@ import {
   PoliticianSubHeader,
   Title,
   AuthorHeader,
+  Row,
 } from "./ResultsHeaderStyle";
 
 interface Props {
@@ -32,16 +34,15 @@ const ResultsHeader: React.FC<Props> = ({ results, politician }) => {
   return (
     <div>
       <Header>
-        <div>
+        <Row>
+          {quiz.logoUrl && (
+            <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
+          )}
+          {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
           <Link href={path}>
-            <a>
-              {quiz.logoUrl && (
-                <Logo src={quiz.logoUrl} alt={translate(quiz.title, lang)} />
-              )}
-              {!quiz.logoUrl && <Title>{translate(quiz.title, lang)}</Title>}
-            </a>
+            <Button>{t("header.try")}</Button>
           </Link>
-        </div>
+        </Row>
         <Info>
           <HeaderDate>
             <span>{t("header.finished")}</span>&nbsp;
