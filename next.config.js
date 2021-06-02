@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires:0 */
-const nextTranslate = require("next-translate");
-const optimizedImages = require("next-optimized-images");
-const withPlugins = require("next-compose-plugins");
+const { withSentryConfig } = require("@sentry/nextjs");
+const withTranslate = require("next-translate");
+const withImages = require("next-optimized-images");
 
 const nextConfig = {
   webpack(config) {
@@ -30,24 +30,20 @@ const nextConfig = {
       ? [
           {
             source: "/api/:path*",
-            destination: "http://localhost:5000/:path*",
+            destination: "https://mypolitics.pl/api/:path*",
           },
         ]
       : [];
   },
 };
 
-module.exports = withPlugins(
-  [
-    nextTranslate,
-    [
-      optimizedImages,
-      {
-        responsive: {
-          adapter: require("responsive-loader/sharp"),
-        },
+module.exports = withSentryConfig(
+  withTranslate(
+    withImages({
+      ...nextConfig,
+      responsive: {
+        adapter: require("responsive-loader/sharp"),
       },
-    ],
-  ],
-  nextConfig
+    })
+  )
 );
